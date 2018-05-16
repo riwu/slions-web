@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "extends": "airbnb",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+    }
+  },
+  "env": {
+      "es6": true,
+      "browser": true,
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "react/prop-types": 0
+  }
+}
