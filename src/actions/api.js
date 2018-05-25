@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+axios.defaults.baseURL = 'api/';
+
 const [get, post] = ['get', 'post'].map(method => (path, data) =>
   axios({
     method,
