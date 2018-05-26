@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
-import Login from '../pages/Login';
+import Home from '../pages/Home';
 import ClassList from '../pages/ClassList';
 
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={Login} />
-      <PrivateRoute path="/class" component={ClassList} />
+      <Route exact path="/" component={Home} />
+      <PrivateRoute path="/classes" component={ClassList} />
     </Switch>
   </BrowserRouter>
 );

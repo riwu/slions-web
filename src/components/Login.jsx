@@ -13,16 +13,13 @@ class Login extends React.Component {
         return;
       }
       console.log('Received values of form: ', values);
-      this.props.login(this.username, this.password).then(() => {
-        console.log('done', this.props.history);
-        this.props.history.push('/class');
-      });
+      this.props.login(this.username, this.password).then(this.props.onLogin);
     });
   };
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <div className="Login">
+      <div className={`Login ${this.props.className}`}>
         <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
             {getFieldDecorator('userName', {
