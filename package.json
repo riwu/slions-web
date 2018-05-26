@@ -36,5 +36,8 @@
       "target": "http://localhost:3000",
       "pathRewrite": { "^/api": "" }
     }
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./__tests__/setup.js"
   }
 }
