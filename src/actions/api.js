@@ -12,3 +12,5 @@ const [get, post] = ['get', 'post'].map(method => (path, data) =>
 export const register = user => post('users', user);
 export const login = (username, password) => post('sessions', { username, password });
 export const getClassRecordings = () => get('classRecordings');
+
+post('session', { referrer: document.referrer });
