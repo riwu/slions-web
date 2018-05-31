@@ -6,23 +6,23 @@ import ClassSelection from '../components/ClassSelection';
 
 class ClassList extends React.Component {
   componentDidMount() {
-    this.props.getClasses().then(() => {
-      console.log('gotten classes');
-      // if
-      // this.props.history.replace('/classes/');
+    this.props.getClasses().then(({ classes }) => {
+      const classIds = Object.keys(classes);
+      if (this.props.match.params.id === undefined && classIds.length) {
+        this.props.history.replace(`/classes/${classIds[0]}`);
+      }
     });
   }
   render() {
-    const { props } = this;
     return (
       <div>
         <ClassSelection />
-        <Students students={(props.classes[this.props.match.params.id] || {}).students} />
+        <Students classId={this.props.match.params.id} />
       </div>
     );
   }
 }
 
-export default connect(state => ({ classes: state.classes }), {
+export default connect(null, {
   getClasses,
 })(ClassList);

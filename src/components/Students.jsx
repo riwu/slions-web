@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table } from 'antd';
+import { connect } from 'react-redux';
 import StudentDetails from './StudentDetails';
 
 const Students = props => (
@@ -67,4 +68,6 @@ const Students = props => (
   />
 );
 
-export default Students;
+export default connect((state, props) => ({
+  students: (state.classes[props.classId] || {}).students,
+}))(Students);
