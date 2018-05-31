@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { getClasses, getSongs } from '../actions';
 import Students from '../components/Students';
 import ClassSelection from '../components/ClassSelection';
+import ClassInfo from '../components/ClassInfo';
+import CreateClass from '../components/CreateClass';
+import './ClassList.css';
 
 class ClassList extends React.Component {
   componentDidMount() {
@@ -16,8 +19,12 @@ class ClassList extends React.Component {
   }
   render() {
     return (
-      <div>
-        <ClassSelection />
+      <div className="ClassList">
+        <ClassInfo id={this.props.match.params.id} />
+        <div className="buttonGroup">
+          <ClassSelection />
+          <CreateClass className="CreateClass" />
+        </div>
         <Students classId={this.props.match.params.id} />
       </div>
     );

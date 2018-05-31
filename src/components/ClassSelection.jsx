@@ -16,7 +16,7 @@ const ClassSelection = props => (
     }
   >
     <span>
-      Select class <Icon type="down" />
+      Change class <Icon type="down" />
     </span>
   </Dropdown>
 );
