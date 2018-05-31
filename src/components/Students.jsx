@@ -1,12 +1,12 @@
 import React from 'react';
-import { Table } from 'antd';
 import { connect } from 'react-redux';
+import { Table } from 'antd';
 import StudentDetails from './StudentDetails';
 
 const Students = props => (
   <Table
     expandRowByClick
-    expandedRowRender={StudentDetails}
+    expandedRowRender={data => <StudentDetails {...data} />}
     dataSource={Object.entries(props.students || {}).map(([id, student]) => {
       const scores = Object.entries(student.songs).reduce((acc, [songId, sections]) => {
         const sectionsScores = Object.entries(sections).reduce(
@@ -42,7 +42,6 @@ const Students = props => (
         };
         return acc;
       }, {});
-      console.log('scores', scores);
       const scoresArr = Object.values(scores);
       return {
         key: id,

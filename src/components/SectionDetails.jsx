@@ -8,21 +8,21 @@ const SectionDetails = props => (
     expandRowByClick
     expandedRowRender={RecordingDetails}
     dataSource={Object.entries(props.section).map(([timestamp, recording]) => ({
-        key: timestamp,
-        time: moment(Number(timestamp)).format('DD MMM YY, hh:mm a'),
-        score: recording.score,
-        lines: recording.lines,
-      }))}
+      key: timestamp,
+      time: moment(Number(timestamp)).format('DD MMM YY, hh:mm a'),
+      score: recording.score,
+      lines: recording.lines,
+    }))}
     columns={[
-        {
-          title: 'Time',
-          dataIndex: 'time',
-        },
-        {
-          title: 'Score',
-          dataIndex: 'score',
-        },
-      ]}
+      {
+        title: 'Time',
+        dataIndex: 'time',
+      },
+      {
+        title: 'Score',
+        dataIndex: 'score',
+      },
+    ]}
   />
 );
 export default SectionDetails;

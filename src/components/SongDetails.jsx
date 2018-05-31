@@ -10,11 +10,12 @@ const SongDetails = props => (
       key: id,
       score: section.highest,
       section: section.section,
+      name: (props.sectionsNames[id] || {}).name,
     }))}
     columns={[
       {
         title: 'Section',
-        dataIndex: 'key',
+        dataIndex: 'name',
       },
       {
         title: 'Best score',

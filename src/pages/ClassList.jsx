@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getClasses } from '../actions';
+import { getClasses, getSongs } from '../actions';
 import Students from '../components/Students';
 import ClassSelection from '../components/ClassSelection';
 
@@ -12,6 +12,7 @@ class ClassList extends React.Component {
         this.props.history.replace(`/classes/${classIds[0]}`);
       }
     });
+    this.props.getSongs();
   }
   render() {
     return (
@@ -25,4 +26,5 @@ class ClassList extends React.Component {
 
 export default connect(null, {
   getClasses,
+  getSongs,
 })(ClassList);
