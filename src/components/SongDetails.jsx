@@ -1,9 +1,11 @@
 import React from 'react';
 import { Table } from 'antd';
+import SectionDetails from './SectionDetails';
 
 const SongDetails = props => (
   <Table
     expandRowByClick
+    expandedRowRender={SectionDetails}
     dataSource={Object.entries(props.sections).map(([id, section]) => ({
       key: id,
       score: section.highest,

@@ -13,12 +13,15 @@ const Students = props => (
             const sectionScores = Object.entries(section).reduce(
               (sectionAcc, [timestamp, lines]) => {
                 const linesArr = Object.values(lines);
-                sectionAcc[timestamp] = Math.round(linesArr.reduce((score, line) => score + line.score, 0) / linesArr.length * 100);
+                sectionAcc[timestamp] = {
+                  score: Math.round(linesArr.reduce((score, line) => score + line.score, 0) / linesArr.length * 100),
+                  lines,
+                };
                 return sectionAcc;
               },
               {},
             );
-            const sectionScoresArr = Object.values(sectionScores);
+            const sectionScoresArr = Object.values(sectionScores).map(({ score }) => score);
             accumulator[sectionId] = {
               highest: sectionScoresArr.length && Math.max(...sectionScoresArr),
               section: sectionScores,
