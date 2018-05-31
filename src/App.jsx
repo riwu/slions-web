@@ -6,7 +6,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
-import Routes from './Routes';
+import Routes from './routes';
 
 const middleware = [thunk];
 const config = {
