@@ -8,7 +8,7 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Home} />
-      <PrivateRoute path="/classes" component={ClassList} />
+      <PrivateRoute path="/classes/:id?" component={ClassList} />
     </Switch>
   </BrowserRouter>
 );

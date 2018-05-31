@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'api/';
+axios.defaults.baseURL = `${window.location.origin}/api/`;
 
 const [get, post] = ['get', 'post'].map(method => (path, data) =>
   axios({
@@ -11,6 +11,8 @@ const [get, post] = ['get', 'post'].map(method => (path, data) =>
 
 export const register = user => post('users', user);
 export const login = (username, password) => post('sessions', { username, password });
-export const getClassRecordings = () => get('classRecordings');
+export const getClasses = () => get('classes');
 
-post('session', { referrer: document.referrer });
+if (process.env.NODE_ENV !== 'development') {
+  post('session', { referrer: document.referrer });
+}

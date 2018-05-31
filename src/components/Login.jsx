@@ -13,7 +13,7 @@ class Login extends React.Component {
         return;
       }
       console.log('Received values of form: ', values);
-      this.props.login(this.username, this.password).then(this.props.onLogin);
+      this.props.login(values.username, values.password).then(this.props.onLogin);
     });
   };
   render() {
@@ -22,14 +22,11 @@ class Login extends React.Component {
       <div className={`Login ${this.props.className}`}>
         <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
-            {getFieldDecorator('userName', {
+            {getFieldDecorator('username', {
               rules: [{ required: true, message: 'Please input your username!' }],
             })(<Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
               placeholder="Username"
-              onChange={(e) => {
-                  this.username = e.target.value;
-                }}
             />)}
           </Form.Item>
           <Form.Item>
@@ -39,9 +36,6 @@ class Login extends React.Component {
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
               placeholder="Password"
-              onChange={(e) => {
-                  this.password = e.target.value;
-                }}
             />)}
           </Form.Item>
           <Form.Item>

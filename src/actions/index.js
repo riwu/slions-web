@@ -20,9 +20,8 @@ export const login = (username, password) => dispatch =>
       throw e; // throw even when 401 so that promise is rejected
     });
 
-export const getClassRecordings = () => dispatch =>
-  api.getClassRecordings().then(recordings =>
-    dispatch({
-      type: types.SET_RECORDINGS,
-      recordings,
-    }));
+export const getClasses = () => dispatch => api.getClasses().then(classes =>
+  dispatch({
+    type: types.SET_CLASSES,
+    classes,
+  }));

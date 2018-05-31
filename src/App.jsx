@@ -6,9 +6,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
-
 import Routes from './Routes';
-import { getClassRecordings } from './actions';
 
 const middleware = [thunk];
 const config = {
@@ -24,8 +22,6 @@ export const store = createStore(
 );
 const persistor = persistStore(store);
 // persistor.purge();
-
-store.dispatch(getClassRecordings());
 
 const App = () => (
   <Provider store={store}>
