@@ -1,9 +1,11 @@
 import React from 'react';
 import { Table } from 'antd';
+import StudentDetails from './StudentDetails';
 
 const Students = props => (
   <Table
     expandRowByClick
+    expandedRowRender={StudentDetails}
     dataSource={Object.entries(props.students || {}).map(([id, student]) => {
       const scores = Object.entries(student.songs).reduce((acc, [songId, sections]) => {
         const sectionsScores = Object.entries(sections).reduce(
