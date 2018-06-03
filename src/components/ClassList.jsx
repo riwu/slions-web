@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'antd';
+import moment from 'moment';
 import Students from './Students';
 import { DATA } from '../util/languages';
 
@@ -9,11 +10,10 @@ const ClassList = props => (
     expandRowByClick
     expandedRowRender={Students}
     dataSource={Object.entries(props.classes).map(([id, classInfo]) => ({
+      ...classInfo,
       key: id,
-      title: classInfo.title,
-      language: classInfo.language,
       languageLabel: DATA.LABEL[classInfo.language],
-      students: classInfo.students,
+      createdOn: moment(classInfo.createdOn).format('ddd, DD MMM YY, hh:mm a'),
     }))}
     columns={[
       {
@@ -23,6 +23,10 @@ const ClassList = props => (
       {
         title: 'Language',
         dataIndex: 'languageLabel',
+      },
+      {
+        title: 'Created On',
+        dataIndex: 'createdOn',
       },
     ]}
   />
