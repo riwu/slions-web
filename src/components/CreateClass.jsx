@@ -6,7 +6,7 @@ import PickSong from './PickSong';
 import { getSongs, createClass } from '../actions';
 
 class CreateClass extends React.Component {
-  state = { visible: true, selectedSongs: {}, language: Object.keys(DATA.LABEL)[0] };
+  state = { visible: false, selectedSongs: {}, language: Object.keys(DATA.LABEL)[0] };
 
   static getDerivedStateFromProps(props, state) {
     return {

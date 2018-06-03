@@ -1,13 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Table } from 'antd';
 import StudentDetails from './StudentDetails';
 
 const Students = props => (
   <Table
     expandRowByClick
-    expandedRowRender={data => <StudentDetails {...data} language={props.class.language} />}
-    dataSource={Object.entries(props.class.students || {}).map(([id, student]) => {
+    expandedRowRender={data => <StudentDetails {...data} language={props.language} />}
+    dataSource={Object.entries(props.students || {}).map(([id, student]) => {
       const scores = Object.entries(student.songs).reduce((acc, [songId, sections]) => {
         const sectionsScores = Object.entries(sections).reduce(
           (accumulator, [sectionId, section]) => {
@@ -67,10 +66,4 @@ const Students = props => (
   />
 );
 
-Students.defaultProps = {
-  class: {},
-};
-
-export default connect((state, props) => ({
-  class: state.classes[props.classId],
-}))(Students);
+export default Students;
