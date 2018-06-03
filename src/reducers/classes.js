@@ -1,9 +1,11 @@
-import { SET_CLASSES } from '../actions/types';
+import { SET_CLASSES, SET_CLASS } from '../actions/types';
 
-const classes = (state = [], action) => {
+const classes = (state = {}, action) => {
   switch (action.type) {
     case SET_CLASSES:
       return action.classes;
+    case SET_CLASS:
+      return { ...state, [action.id]: { title: action.title, language: action.language } };
     default:
       return state;
   }

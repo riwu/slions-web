@@ -27,4 +27,4 @@ const StudentDetails = props => (
   />
 );
 
-export default connect(state => ({ songs: state.songs }))(StudentDetails);
+export default connect((state, props) => ({ songs: state.songs[props.language] }))(StudentDetails);

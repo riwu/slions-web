@@ -10,12 +10,15 @@ import './ClassList.css';
 class ClassList extends React.Component {
   componentDidMount() {
     this.props.getClasses().then(({ classes }) => {
-      const classIds = Object.keys(classes);
-      if (this.props.match.params.id === undefined && classIds.length) {
-        this.props.history.replace(`/classes/${classIds[0]}`);
+      const routeClassId = this.props.match.params.id;
+      const targetClassId = classes[routeClassId] ? routeClassId : Object.keys(classes)[0];
+      if (targetClassId !== undefined) {
+        this.props.getSongs(classes[targetClassId].language);
+      }
+      if (classes[routeClassId] === undefined && targetClassId !== undefined) {
+        this.props.history.replace(`/classes/${targetClassId}`);
       }
     });
-    this.props.getSongs();
   }
   render() {
     return (

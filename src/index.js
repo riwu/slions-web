@@ -8,8 +8,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 register({
   onUpdate: () => {
-    if (window.confirm('Website has been updated, click OK to refresh')) {
-      window.location.reload();
-    }
+    alert('Website has been updated, click OK to refresh');
+    window.location.reload();
   },
 });

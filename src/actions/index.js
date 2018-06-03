@@ -27,9 +27,18 @@ export const getClasses = () => dispatch =>
       classes,
     }));
 
-export const getSongs = () => dispatch =>
-  api.getSongs().then(songs =>
+export const getSongs = language => dispatch =>
+  api.getSongs(language).then(songs =>
     dispatch({
       type: types.SET_SONGS,
       songs,
+      language,
+    }));
+
+export const createClass = data => dispatch =>
+  api.createClass(data).then(({ id }) =>
+    dispatch({
+      type: types.SET_CLASS,
+      id,
+      ...data,
     }));

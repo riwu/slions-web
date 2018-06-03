@@ -6,8 +6,8 @@ import StudentDetails from './StudentDetails';
 const Students = props => (
   <Table
     expandRowByClick
-    expandedRowRender={data => <StudentDetails {...data} />}
-    dataSource={Object.entries(props.students || {}).map(([id, student]) => {
+    expandedRowRender={data => <StudentDetails {...data} language={props.class.language} />}
+    dataSource={Object.entries(props.class.students || {}).map(([id, student]) => {
       const scores = Object.entries(student.songs).reduce((acc, [songId, sections]) => {
         const sectionsScores = Object.entries(sections).reduce(
           (accumulator, [sectionId, section]) => {
@@ -67,6 +67,10 @@ const Students = props => (
   />
 );
 
+Students.defaultProps = {
+  class: {},
+};
+
 export default connect((state, props) => ({
-  students: (state.classes[props.classId] || {}).students,
+  class: state.classes[props.classId],
 }))(Students);
