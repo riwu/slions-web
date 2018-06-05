@@ -17,8 +17,8 @@ const PickSong = props => (
         title: 'Mandatory',
         render: ({ key }) => (
           <Checkbox
-            checked={props.selectedSongs[key]}
-            onChange={e => props.onSelect(key, e.target.checked || undefined)}
+            checked={props.selectedSongs[key] === undefined || props.selectedSongs[key] === true}
+            onChange={e => props.onSelect(key, e.target.checked || null)}
           />
         ),
       },
@@ -27,7 +27,7 @@ const PickSong = props => (
         render: ({ key }) => (
           <Checkbox
             checked={props.selectedSongs[key] === false}
-            onChange={e => props.onSelect(key, e.target.checked ? false : undefined)}
+            onChange={e => props.onSelect(key, e.target.checked ? false : null)}
           />
         ),
       },

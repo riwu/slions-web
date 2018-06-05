@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = `${window.location.origin}/api/`;
 
-const [get, post] = ['get', 'post'].map(method => (path, data) =>
+const [get, post, patch] = ['get', 'post', 'patch'].map(method => (path, data) =>
   axios({
     method,
     url: path,
@@ -14,6 +14,7 @@ export const login = (username, password) => post('sessions', { username, passwo
 export const getClasses = () => get('classes');
 export const getSongs = language => get(`songs?native=${language}&second=${language}`);
 export const createClass = classInfo => post('classes', classInfo);
+export const updateClass = (id, classInfo) => patch(`class/${id}`, classInfo);
 
 if (process.env.NODE_ENV !== 'development') {
   post('session', { referrer: document.referrer });

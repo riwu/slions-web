@@ -5,7 +5,7 @@ const classes = (state = {}, action) => {
     case SET_CLASSES:
       return action.classes;
     case SET_CLASS:
-      return { ...state, [action.id]: { title: action.title, language: action.language } };
+      return { ...state, [action.id]: action.data };
     default:
       return state;
   }

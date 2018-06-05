@@ -4,13 +4,12 @@ import { getClasses, getSongs } from '../actions';
 import CreateClass from '../components/CreateClass';
 import Class from '../components/ClassList';
 import './ClassList.css';
+import { DATA } from '../util/languages';
 
 class ClassList extends React.Component {
   componentDidMount() {
-    this.props.getClasses().then(({ classes }) => {
-      const languages = [...new Set(Object.values(classes).map(({ language }) => language))];
-      languages.forEach(language => this.props.getSongs(language));
-    });
+    this.props.getClasses();
+    Object.keys(DATA.LABEL).forEach(language => this.props.getSongs(language));
   }
   render() {
     return (
