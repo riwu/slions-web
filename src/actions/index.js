@@ -43,7 +43,7 @@ export const createClass = data => dispatch =>
       data,
     }));
 
-export const updateClass = (id, data) => dispatch =>
+export const updateClass = ({ id, ...data }) => dispatch =>
   api.updateClass(id, data).then(() =>
     dispatch({
       type: types.SET_CLASS,

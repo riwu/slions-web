@@ -1,31 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Modal, Input, Form, Select } from 'antd';
+import { Modal, Input, Form, Select } from 'antd';
 import { DATA } from '../util/languages';
 import PickSong from './PickSong';
-import { createClass } from '../actions';
 
 class ClassForm extends React.Component {
-  static defaultProps = {
-    title: '',
-    language: Object.keys(DATA.LABEL)[0],
-    selectedSongs: {},
-  };
-
   constructor(props) {
     super(props);
+    const language = Object.keys(DATA.LABEL)[0];
     this.state = {
       visible: false,
-      selectedSongs: props.selectedSongs,
-      language: props.language,
-      title: props.title,
+      songs: Object.keys(props.songsList[language]).reduce((acc, { id }) => {
+        acc[id] = true;
+        return acc;
+      }, {}),
+      language,
+      title: '',
+      key: null,
     };
   }
 
-  toggleModal = (e) => {
-    this.setState(({ visible }) => ({ visible: !visible }));
-    e.stopPropagation();
-  };
+  toggleModal = data => this.setState(({ visible }) => ({ visible: !visible, ...data }));
 
   handleLanguageChange = (language) => {
     this.setState({ language });
@@ -33,8 +28,8 @@ class ClassForm extends React.Component {
 
   handleSongSelect = (songId, state) => {
     this.setState(prevState => ({
-      selectedSongs: {
-        ...prevState.selectedSongs,
+      songs: {
+        ...prevState.songs,
         [songId]: state,
       },
     }));
@@ -43,14 +38,10 @@ class ClassForm extends React.Component {
   handleCreate = () => {
     this.props
       .onOk({
+        ...(this.state.key !== null && { id: this.state.key }),
         title: this.state.title.trim() || 'Default class title',
         language: this.state.language,
-        songs: Object.keys(this.props.songs[this.state.language] || {}).reduce((acc, id) => {
-          if (this.state.selectedSongs[id] !== null) {
-            acc[id] = this.state.selectedSongs[id] === undefined || this.state.selectedSongs[id];
-          }
-          return acc;
-        }, {}),
+        songs: this.state.songs,
       })
       .then(() => this.setState({ visible: false }))
       .catch(e => alert(`Error: ${e.message}`));
@@ -60,9 +51,7 @@ class ClassForm extends React.Component {
     const { props } = this;
     return (
       <React.Fragment>
-        <Button className={props.className} type="primary" onClick={this.toggleModal}>
-          {props.label}
-        </Button>
+        {props.children(this.toggleModal)}
         <Modal
           title={props.label}
           visible={this.state.visible}
@@ -90,7 +79,7 @@ class ClassForm extends React.Component {
             <Form.Item label="Songs">
               <PickSong
                 onSelect={this.handleSongSelect}
-                selectedSongs={this.state.selectedSongs}
+                songs={this.state.songs}
                 language={this.state.language}
               />
             </Form.Item>
@@ -101,4 +90,4 @@ class ClassForm extends React.Component {
   }
 }
 
-export default connect(state => ({ songs: state.songs }))(ClassForm);
+export default connect(state => ({ songsList: state.songs }))(ClassForm);

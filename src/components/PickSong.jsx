@@ -4,7 +4,7 @@ import { Table, Checkbox } from 'antd';
 
 const PickSong = props => (
   <Table
-    dataSource={Object.entries(props.songs).map(([id, song]) => ({
+    dataSource={Object.entries(props.songsList).map(([id, song]) => ({
       key: id,
       name: song.nativeTrackName,
     }))}
@@ -17,8 +17,8 @@ const PickSong = props => (
         title: 'Mandatory',
         render: ({ key }) => (
           <Checkbox
-            checked={props.selectedSongs[key] === undefined || props.selectedSongs[key] === true}
-            onChange={e => props.onSelect(key, e.target.checked || null)}
+            checked={props.songs[key]}
+            onChange={e => props.onSelect(key, e.target.checked || undefined)}
           />
         ),
       },
@@ -26,8 +26,8 @@ const PickSong = props => (
         title: 'Optional',
         render: ({ key }) => (
           <Checkbox
-            checked={props.selectedSongs[key] === false}
-            onChange={e => props.onSelect(key, e.target.checked ? false : null)}
+            checked={props.songs[key] === false}
+            onChange={e => props.onSelect(key, e.target.checked ? false : undefined)}
           />
         ),
       },
@@ -39,4 +39,4 @@ PickSong.defaultProps = {
   songs: {},
 };
 
-export default connect((state, props) => ({ songs: state.songs[props.language] }))(PickSong);
+export default connect((state, props) => ({ songsList: state.songs[props.language] }))(PickSong);

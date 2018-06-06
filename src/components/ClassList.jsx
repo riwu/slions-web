@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import { Table } from 'antd';
 import moment from 'moment';
 import Students from './Students';
-import ClassForm from './ClassForm';
 import { DATA } from '../util/languages';
-import { updateClass } from '../actions';
 
 const ClassList = props => (
   <Table
+    expandRowByClick
     expandedRowRender={Students}
     dataSource={Object.entries(props.classes).map(([id, classInfo]) => ({
       ...classInfo,
@@ -30,20 +29,20 @@ const ClassList = props => (
         dataIndex: 'createdOn',
       },
       {
-        title: 'View songs',
-        render: data => (
-          <ClassForm
-            title={data.title}
-            selectedSongs={data.songs}
-            language={data.language}
-            label="Edit"
-            okText="Save"
-            onOk={classInfo => props.updateClass(data.key, classInfo)}
-          />
+        title: 'Actions',
+        render: obj => (
+          <a
+            onClick={(e) => {
+              e.stopPropagation();
+              props.toggleModal(obj);
+            }}
+          >
+            Edit
+          </a>
         ),
       },
     ]}
   />
 );
 
-export default connect(state => ({ classes: state.classes }), { updateClass })(ClassList);
+export default connect(state => ({ classes: state.classes }))(ClassList);

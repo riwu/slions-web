@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getClasses, getSongs } from '../actions';
 import CreateClass from '../components/CreateClass';
-import Class from '../components/ClassList';
-import './ClassList.css';
+import ClassesList from '../components/ClassesList';
+import './Classes.css';
 import { DATA } from '../util/languages';
 
 class ClassList extends React.Component {
@@ -15,7 +15,7 @@ class ClassList extends React.Component {
     return (
       <div className="ClassList">
         <CreateClass className="CreateClass" />
-        <Class />
+        <ClassesList />
       </div>
     );
   }
