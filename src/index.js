@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { hot } from 'react-hot-loader';
 import './index.css';
 import App from './App';
 import { register } from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const HotApp = hot(module)(App);
+ReactDOM.render(<HotApp />, document.getElementById('root'));
 
 register({
   onUpdate: () => {

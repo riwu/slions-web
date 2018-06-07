@@ -1,5 +1,5 @@
 {
-  "name": "react-app",
+  "name": "slions",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -29,7 +29,9 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
+    "react-app-rewire-hot-loader": "^1.0.1",
     "react-app-rewired": "^1.5.2",
+    "react-hot-loader": "^4.3.0",
     "react-scripts": "^1.1.4"
   },
   "proxy": {
