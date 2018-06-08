@@ -4,6 +4,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { hot } from 'react-hot-loader';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
 import Routes from './routes';
@@ -31,4 +32,4 @@ const App = () => (
   </Provider>
 );
 
-export default App;
+export default hot(module)(App);

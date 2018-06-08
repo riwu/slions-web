@@ -14,6 +14,7 @@ const ClassList = props => (
       key: id,
       languageLabel: DATA.LABEL[classInfo.language],
       createdOn: moment(classInfo.createdOn).format('ddd, DD MMM YY, hh:mm a'),
+      studentsCount: Object.keys(classInfo.students).length,
     }))}
     columns={[
       {
@@ -27,6 +28,10 @@ const ClassList = props => (
       {
         title: 'Created On',
         dataIndex: 'createdOn',
+      },
+      {
+        title: 'Size',
+        dataIndex: 'studentsCount',
       },
       {
         title: 'Actions',
