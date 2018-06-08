@@ -7,6 +7,7 @@ const SectionDetails = props => (
   <Table
     expandRowByClick
     expandedRowRender={RecordingDetails}
+    pagination={{ hideOnSinglePage: true }}
     dataSource={Object.entries(props.section).map(([timestamp, recording]) => ({
       key: timestamp,
       time: moment(Number(timestamp)).format('DD MMM YY, hh:mm a'),
@@ -22,7 +23,10 @@ const SectionDetails = props => (
         title: 'Score',
         dataIndex: 'score',
       },
-    ]}
+    ].map(obj => ({
+      ...obj,
+      align: 'center',
+    }))}
   />
 );
 export default SectionDetails;

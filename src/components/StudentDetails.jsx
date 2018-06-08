@@ -7,6 +7,7 @@ const StudentDetails = props => (
   <Table
     expandRowByClick
     expandedRowRender={SongDetails}
+    pagination={{ hideOnSinglePage: true }}
     dataSource={Object.entries(props.scores).map(([id, song]) => ({
       key: id,
       name: (props.songs[id] || {}).nativeTrackName,
@@ -23,7 +24,10 @@ const StudentDetails = props => (
         title: 'Score',
         dataIndex: 'score',
       },
-    ]}
+    ].map(obj => ({
+      ...obj,
+      align: 'center',
+    }))}
   />
 );
 

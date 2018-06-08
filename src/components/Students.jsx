@@ -7,6 +7,7 @@ const Students = props => (
     expandRowByClick
     expandedRowRender={data => <StudentDetails {...data} language={props.language} />}
     dataSource={props.students}
+    pagination={{ hideOnSinglePage: true }}
     columns={[
       {
         title: 'Username',
@@ -20,7 +21,10 @@ const Students = props => (
         title: 'Score',
         dataIndex: 'score',
       },
-    ]}
+    ].map(obj => ({
+      ...obj,
+      align: 'center',
+    }))}
   />
 );
 
