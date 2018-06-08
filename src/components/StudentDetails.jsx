@@ -19,10 +19,13 @@ const StudentDetails = props => (
       {
         title: 'Song',
         dataIndex: 'name',
+        sorter: (a, b) => a.name.localeCompare(b.name),
       },
       {
         title: 'Score',
         dataIndex: 'score',
+        defaultSortOrder: 'ascend',
+        sorter: (a, b) => a.score - b.score,
       },
     ].map(obj => ({
       ...obj,

@@ -61,8 +61,8 @@ const ClassList = props => (
         ...classInfo,
         key: id,
         languageLabel: DATA.LABEL[classInfo.language],
-        createdOn: moment(classInfo.createdOn).format('ddd, DD MMM YY, hh:mm a'),
-        studentsCount: Object.keys(classInfo.students).length,
+        createdOnText: moment(classInfo.createdOn).format('ddd, DD MMM YY, hh:mm a'),
+        studentsCount: Object.keys(classInfo.students || {}).length,
         students,
         avgScore: Math.round(scores.reduce((sum, score) => sum + score) / scores.length) || 0,
         highestScore: Math.max(...scores),
@@ -73,30 +73,38 @@ const ClassList = props => (
       {
         title: 'Title',
         dataIndex: 'title',
+        sorter: (a, b) => a.title.localeCompare(b.title),
       },
       {
         title: 'Language',
         dataIndex: 'languageLabel',
+        sorter: (a, b) => a.languageLabel.localeCompare(b.languageLabel),
       },
       {
         title: 'Created On',
-        dataIndex: 'createdOn',
+        dataIndex: 'createdOnText',
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => moment(a.createdOn) - moment(b.createdOn),
       },
       {
         title: 'Size',
         dataIndex: 'studentsCount',
+        sorter: (a, b) => a.studentsCount - b.studentsCount,
       },
       {
         title: 'Average Score',
         dataIndex: 'avgScore',
+        sorter: (a, b) => a.avgScore - b.avgScore,
       },
       {
         title: 'Highest Score',
         dataIndex: 'highestScore',
+        sorter: (a, b) => a.highestScore - b.highestScore,
       },
       {
         title: 'Lowest Score',
         dataIndex: 'lowestScore',
+        sorter: (a, b) => a.lowestScore - b.lowestScore,
       },
       {
         title: 'Actions',

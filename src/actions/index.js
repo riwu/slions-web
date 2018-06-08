@@ -40,7 +40,7 @@ export const createClass = data => dispatch =>
     dispatch({
       type: types.SET_CLASS,
       id,
-      data,
+      data: { ...data, createdOn: new Date() },
     }));
 
 export const updateClass = ({ id, ...data }) => dispatch =>
