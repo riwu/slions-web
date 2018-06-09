@@ -6,6 +6,7 @@ import './Home.css';
 
 const Main = props => (
   <div className="Home">
+    <Login className="Home-Login" onLogin={() => props.history.push('/classes')} />
     <AppIcon />
     <h1>Welcome to SLIONS</h1>
     <h2>
@@ -19,13 +20,16 @@ const Main = props => (
         I&E Practicum Grant ($10000) and SoC Innovation Prize ($2000) 2018
       </Anchor>
     </h2>
+    <br />
+    <h3>
+      This is the web portal for teachers.<br />Download the mobile app now!
+    </h3>
     <Anchor className="app-store" href="https://itunes.apple.com/app/id1328375727">
       <AppStore href={props.href} />
     </Anchor>
     <Anchor href="https://play.google.com/store/apps/details?id=riwu.slions">
       <GooglePlay href={props.href} />
     </Anchor>
-    <Login className="Home-Login" onLogin={() => props.history.push('/classes')} />
   </div>
 );
 
