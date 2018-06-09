@@ -1,7 +1,6 @@
 import * as api from './api';
 import * as types from './types';
 
-export const x = 10;
 export const login = (username, password) => dispatch =>
   api
     .login(username, password)
