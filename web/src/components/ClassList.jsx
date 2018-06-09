@@ -112,7 +112,7 @@ const ClassList = props => (
           <a
             onClick={(e) => {
               e.stopPropagation();
-              props.toggleModal(obj);
+              props.toggleModal(e, obj);
             }}
           >
             Edit

@@ -20,7 +20,7 @@ class ClassForm extends React.Component {
     };
   }
 
-  toggleModal = data => this.setState(({ visible }) => ({ visible: !visible, ...data }));
+  toggleModal = (e, data) => this.setState(({ visible }) => ({ visible: !visible, ...data }));
 
   handleLanguageChange = (language) => {
     this.setState({ language });
