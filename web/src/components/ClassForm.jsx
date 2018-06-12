@@ -20,6 +20,7 @@ class ClassForm extends React.Component {
     };
   }
 
+  // eslint-disable-next-line no-unused-vars
   toggleModal = (e, data) => this.setState(({ visible }) => ({ visible: !visible, ...data }));
 
   handleLanguageChange = (language) => {

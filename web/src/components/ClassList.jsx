@@ -19,8 +19,7 @@ const ClassList = props => (
                 (sectionAcc, [timestamp, lines]) => {
                   const linesArr = Object.values(lines);
                   sectionAcc[timestamp] = {
-                    score: Math.round(linesArr.reduce((score, line) => score + line.score, 0) /
-                        linesArr.length *
+                    score: Math.round((linesArr.reduce((score, line) => score + line.score, 0) / linesArr.length) *
                         100),
                     lines,
                   };

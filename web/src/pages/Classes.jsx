@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getClasses, getSongs } from '../actions';
 import CreateClass from '../components/CreateClass';
 import ClassesList from '../components/ClassesList';
-import './Classes.css';
+import styles from './Classes.module.css';
 import { DATA } from '../util/languages';
 
 class ClassList extends React.Component {
@@ -13,15 +13,15 @@ class ClassList extends React.Component {
   }
   render() {
     return (
-      <div className="ClassList">
-        <CreateClass className="CreateClass" />
+      <div className={styles.container}>
+        <CreateClass className={styles.createButton} />
         <ClassesList />
       </div>
     );
   }
 }
 
-export default connect(null, {
-  getClasses,
-  getSongs,
-})(ClassList);
+export default connect(
+  null,
+  { getClasses, getSongs },
+)(ClassList);

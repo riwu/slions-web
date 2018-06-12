@@ -2,11 +2,11 @@ import React from 'react';
 import Anchor from '../components/Anchor';
 import { AppStore, GooglePlay, AppIcon } from '../assets/images';
 import Login from '../components/Login';
-import './Home.css';
+import styles from './Home.module.css';
 
 const Main = props => (
-  <div className="Home">
-    <Login className="Home-Login" onLogin={() => props.history.push('/classes')} />
+  <div className={styles.container}>
+    <Login className={styles.login} onLogin={() => props.history.push('/classes')} />
     <AppIcon />
     <h1>Welcome to SLIONS</h1>
     <h2>
@@ -24,7 +24,7 @@ const Main = props => (
     <h3>
       This is the web portal for teachers.<br />Download the mobile app now!
     </h3>
-    <Anchor className="app-store" href="https://itunes.apple.com/app/id1328375727">
+    <Anchor className={styles.appStore} href="https://itunes.apple.com/app/id1328375727">
       <AppStore href={props.href} />
     </Anchor>
     <Anchor href="https://play.google.com/store/apps/details?id=riwu.slions">

@@ -1,13 +1,13 @@
-.Home {
+.container {
   text-align: center;
   margin: 5% 15%;
 }
 
-.Home-Login {
+.login {
   margin-bottom: 50px;
   text-align: right;
 }
 
-.app-store {
+.appStore {
   margin-right: 8px;
 }
