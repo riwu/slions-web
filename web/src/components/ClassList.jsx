@@ -38,11 +38,10 @@ const ClassList = props => (
           );
           const sectionScoresArr = Object.values(sectionsScores);
           acc[songId] = {
-            avg:
-              sectionScoresArr.reduce(
+            avg: Math.round(sectionScoresArr.reduce(
                 (sectionScoresAcc, { highest }) => sectionScoresAcc + highest,
                 0,
-              ) / sectionScoresArr.length,
+              ) / sectionScoresArr.length),
             sections: sectionsScores,
           };
           return acc;
@@ -52,7 +51,7 @@ const ClassList = props => (
           key: id,
           ...student,
           scores,
-          score: scoresArr.reduce((acc, { avg }) => acc + avg, 0) / scoresArr.length,
+          score: Math.round(scoresArr.reduce((acc, { avg }) => acc + avg, 0) / scoresArr.length),
         };
       });
       const scores = students.length === 0 ? [0] : students.map(({ score }) => score);
@@ -107,9 +106,10 @@ const ClassList = props => (
       },
       {
         title: 'Actions',
+        /* eslint-disable */
         render: obj => (
           <a
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               props.toggleModal(e, obj);
             }}
@@ -117,6 +117,7 @@ const ClassList = props => (
             Edit
           </a>
         ),
+        /* eslint-disable */
       },
     ].map(obj => ({
       ...obj,

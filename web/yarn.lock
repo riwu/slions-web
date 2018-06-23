@@ -7785,9 +7785,9 @@ react-error-overlay@5.0.0-next.b2fd8db8:
   version "5.0.0-next.b2fd8db8"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.0.0-next.b2fd8db8.tgz#e411264d5e16ffc1b5b27149451be99ed24b43f1"
 
-react-hot-loader@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.3.0.tgz#3d417797acd6f78bd0291ee225828f5dd78a3829"
+react-hot-loader@^4.3.3:
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.3.3.tgz#37409a3341c7787563d0972007ba02521f82f5d5"
   dependencies:
     fast-levenshtein "^2.0.6"
     global "^4.3.0"
