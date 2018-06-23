@@ -11,7 +11,7 @@ const ClassList = props => (
     expandedRowRender={Students}
     pagination={{ hideOnSinglePage: true }}
     dataSource={Object.entries(props.classes).map(([id, classInfo]) => {
-      const students = Object.entries(classInfo.students || {}).map(([id, student]) => {
+      const students = Object.entries(classInfo.students || {}).map(([studentId, student]) => {
         const scores = Object.entries(student.songs).reduce((acc, [songId, sections]) => {
           const sectionsScores = Object.entries(sections).reduce(
             (accumulator, [sectionId, section]) => {
@@ -48,7 +48,7 @@ const ClassList = props => (
         }, {});
         const scoresArr = Object.values(scores);
         return {
-          key: id,
+          key: studentId,
           ...student,
           scores,
           score: Math.round(scoresArr.reduce((acc, { avg }) => acc + avg, 0) / scoresArr.length),
