@@ -85,7 +85,7 @@ const ClassList = props => (
         sorter: (a, b) => moment(a.createdOn) - moment(b.createdOn),
       },
       {
-        title: 'Size',
+        title: 'Students',
         dataIndex: 'studentsCount',
         sorter: (a, b) => a.studentsCount - b.studentsCount,
       },

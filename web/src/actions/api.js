@@ -15,6 +15,7 @@ export const getClasses = () => get('classes');
 export const getSongs = language => get(`songs?native=${language}&second=${language}`);
 export const createClass = classInfo => post('classes', classInfo);
 export const updateClass = (id, classInfo) => patch(`class/${id}`, classInfo);
+export const updateVideoSize = () => patch('songs/videoSize');
 
 if (process.env.NODE_ENV !== 'development') {
   post('session', { referrer: document.referrer });

@@ -4,11 +4,12 @@ import * as types from './types';
 export const login = (username, password) => dispatch =>
   api
     .login(username, password)
-    .then(() =>
+    .then(({ user }) =>
       dispatch({
         type: types.SET_USER,
         user: {
-          username,
+          username: user.username,
+          isAdmin: user.isAdmin,
         },
       }))
     .catch((e) => {

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getClasses, getSongs } from '../actions';
 import CreateClass from '../components/CreateClass';
+import UpdateVideoSize from '../components/UpdateVideoSize';
 import ClassesList from '../components/ClassesList';
 import styles from './Classes.module.css';
 import { DATA } from '../util/languages';
@@ -14,7 +15,10 @@ class ClassList extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <CreateClass className={styles.createButton} />
+        <div className={styles.buttons}>
+          <CreateClass />
+          <UpdateVideoSize />
+        </div>
         <ClassesList />
       </div>
     );

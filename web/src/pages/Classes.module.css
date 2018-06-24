@@ -2,6 +2,8 @@
   padding: 30px 5%;
 }
 
-.createButton {
+.buttons {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
 }
