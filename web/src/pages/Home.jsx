@@ -4,9 +4,18 @@ import { AppStore, GooglePlay, AppIcon } from '../assets/images';
 import Login from '../components/Login';
 import styles from './Home.module.css';
 
-const Main = props => (
+const Home = props => (
   <div className={styles.container}>
-    <Login className={styles.login} onLogin={() => props.history.push('/classes')} />
+    <Login
+      className={styles.login}
+      onLogin={() => {
+        if (props.location.state.redirected) {
+          props.history.goBack();
+        } else {
+          props.history.push('/classes');
+        }
+      }}
+    />
     <AppIcon />
     <h1>Welcome to SLIONS</h1>
     <h2>
@@ -33,4 +42,4 @@ const Main = props => (
   </div>
 );
 
-export default Main;
+export default Home;
