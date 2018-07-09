@@ -61,6 +61,7 @@ class ClassForm extends React.Component {
           onCancel={this.toggleModal}
         >
           <Form layout="horizontal">
+            {props.Share && <props.Share id={this.state.key} />}
             <Form.Item label="Title">
               <Input
                 placeholder="Enter a class title"
