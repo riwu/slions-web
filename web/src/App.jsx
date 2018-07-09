@@ -8,6 +8,7 @@ import { hot } from 'react-hot-loader';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
 import Routes from './routes';
+import { getLanguages } from './actions';
 
 const middleware = [thunk];
 const config = {
@@ -23,6 +24,8 @@ export const store = createStore(
 );
 const persistor = persistStore(store);
 // persistor.purge();
+
+store.dispatch(getLanguages());
 
 const App = () => (
   <Provider store={store}>

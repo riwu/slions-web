@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Button, message } from 'antd';
 import { joinClass, getClass } from '../actions/api';
 import formatDate from '../util/formatDate';
@@ -19,7 +20,8 @@ class JoinClass extends React.Component {
       });
   }
   render() {
-    const { id } = this.props.match.params;
+    const { props } = this;
+    const { id } = props.match.params;
     if (this.state.notFound) return `Class with id ${id} not found!`;
     return (
       <div className={styles.container}>
@@ -30,7 +32,7 @@ class JoinClass extends React.Component {
           </div>
           <div>
             <b>Language: </b>
-            {this.state.language}
+            {props.languages[this.state.language]}
           </div>
           <div>
             <b>Created On: </b>
@@ -43,12 +45,12 @@ class JoinClass extends React.Component {
                 joinClass(id)
                   .then(() => {
                     message.success(`Successfully joined ${this.state.title}`);
-                    this.props.history.push('/classes');
+                    props.history.push('/classes');
                   })
                   .catch((e) => {
                     if (e.response.status === 409) {
                       message.warn(`You have already joined the class ${this.state.title}`);
-                      this.props.history.push('/classes');
+                      props.history.push('/classes');
                       return;
                     }
                     message.error(`Failed to join ${this.state.title}: ${e.message}`);
@@ -64,4 +66,4 @@ class JoinClass extends React.Component {
   }
 }
 
-export default JoinClass;
+export default connect(state => ({ languages: state.languages }))(JoinClass);

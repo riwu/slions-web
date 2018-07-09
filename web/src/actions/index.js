@@ -51,3 +51,10 @@ export const updateClass = ({ id, ...data }) => dispatch =>
       id,
       data,
     }));
+
+export const getLanguages = () => dispatch =>
+  api.getLanguages().then(languages =>
+    dispatch({
+      type: types.SET_LANGUAGES,
+      languages,
+    }));

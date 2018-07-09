@@ -18,6 +18,7 @@ export const updateClass = (id, classInfo) => patch(`class/${id}`, classInfo);
 export const updateVideoSize = () => patch('songs/videoSize');
 export const joinClass = id => post(`class/${id}/join`);
 export const getClass = id => get(`class/${id}`);
+export const getLanguages = () => get('languages');
 
 if (process.env.NODE_ENV !== 'development') {
   post('session', { referrer: document.referrer });
