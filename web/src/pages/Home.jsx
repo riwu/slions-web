@@ -9,7 +9,7 @@ const Home = props => (
     <Login
       className={styles.login}
       onLogin={() => {
-        if (props.location.state.redirected) {
+        if ((props.location.state || {}).redirected) {
           props.history.goBack();
         } else {
           props.history.push('/classes');
