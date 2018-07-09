@@ -15,6 +15,7 @@ const SectionDetails = props => (
         time: moment(Number(timestamp)).format('DD MMM YY, hh:mm a'),
         score: recording.score,
         lines: recording.lines,
+        recordingBaseURL: props.recordingBaseURL,
       };
     })}
     columns={[
@@ -35,4 +36,5 @@ const SectionDetails = props => (
     }))}
   />
 );
+
 export default SectionDetails;

@@ -14,6 +14,7 @@ const StudentDetails = props => (
       sectionsNames: (props.songs[id] || {}).sections,
       score: song.avg,
       sections: song.sections,
+      recordingBaseURL: props.recordingBaseURL,
     }))}
     columns={[
       {

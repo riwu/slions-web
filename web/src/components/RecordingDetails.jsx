@@ -22,6 +22,17 @@ const RecordingDetails = props => (
         title: 'Translation',
         dataIndex: 'translation',
       },
+      {
+        title: 'Recording',
+        render: obj => (
+          <audio
+            preload="metadata"
+            loop
+            controls
+            src={`${props.recordingBaseURL + obj.key}-${props.key}.wav`}
+          />
+        ),
+      },
     ].map(obj => ({
       ...obj,
       align: 'center',
