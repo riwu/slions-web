@@ -4,6 +4,7 @@ import { Table } from 'antd';
 import moment from 'moment';
 import Students from './Students';
 import { DATA } from '../util/languages';
+import formatDate from '../util/formatDate';
 
 const ClassList = props => (
   <Table
@@ -59,7 +60,7 @@ const ClassList = props => (
         ...classInfo,
         key: id,
         languageLabel: DATA.LABEL[classInfo.language],
-        createdOnText: moment(classInfo.createdOn).format('ddd, DD MMM YY, hh:mm a'),
+        createdOnText: formatDate(classInfo.createdOn),
         studentsCount: Object.keys(classInfo.students || {}).length,
         students,
         avgScore: Math.round(scores.reduce((sum, score) => sum + score) / scores.length) || 0,
