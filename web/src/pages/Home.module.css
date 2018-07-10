@@ -1,6 +1,11 @@
 .container {
   text-align: center;
-  margin: 5% 15%;
+  margin: 20px 10%;
+}
+
+.alertContainer {
+  display: flex;
+  justify-content: center;
 }
 
 .login {
