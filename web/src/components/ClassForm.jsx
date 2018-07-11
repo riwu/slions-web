@@ -10,7 +10,7 @@ class ClassForm extends React.Component {
     const language = Object.keys(DATA.LABEL)[0];
     this.state = {
       visible: false,
-      songs: Object.keys(props.songsList[language] || {}).reduce((acc, { id }) => {
+      songs: Object.keys(props.songsList[language] || {}).reduce((acc, id) => {
         acc[id] = true;
         return acc;
       }, {}),
