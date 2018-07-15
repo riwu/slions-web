@@ -12,6 +12,7 @@ const [get, post, patch] = ['get', 'post', 'patch'].map(method => (path, data) =
 export const register = user => post('users', user);
 export const login = (username, password) => post('sessions', { username, password });
 export const getClasses = () => get('classes');
+export const getJoinedClasses = () => get('classes/joined');
 export const getSongs = language => get(`songs?native=${language}&second=${language}`);
 export const createClass = classInfo => post('classes', classInfo);
 export const updateClass = (id, classInfo) => patch(`class/${id}`, classInfo);

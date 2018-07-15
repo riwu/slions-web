@@ -28,6 +28,13 @@ export const getClasses = () => dispatch =>
       classes,
     }));
 
+export const getJoinedClasses = () => dispatch =>
+  api.getJoinedClasses().then(classes =>
+    dispatch({
+      type: types.SET_JOINED_CLASSES,
+      classes,
+    }));
+
 export const getSongs = language => dispatch =>
   api.getSongs(language).then(songs =>
     dispatch({

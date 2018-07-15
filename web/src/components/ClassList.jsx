@@ -118,7 +118,7 @@ const ClassList = props => (
             Edit
           </a>
         ),
-        /* eslint-disable */
+        /* eslint-enable */
       },
     ].map(obj => ({
       ...obj,
