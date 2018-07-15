@@ -11,6 +11,7 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Home} />
+      <PrivateRoute path="/class/:id/join" component={JoinClass} />
       <React.Fragment>
         <Navigation />
         <Switch>
@@ -18,7 +19,6 @@ const Routes = () => (
           <PrivateRoute path="/classes/:id?" component={Classes} />
         </Switch>
       </React.Fragment>
-      <PrivateRoute path="/class/:id/join" component={JoinClass} />
     </Switch>
   </BrowserRouter>
 );
