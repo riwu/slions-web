@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = `${window.location.origin}/api/`;
 
-const [get, post, patch] = ['get', 'post', 'patch'].map(method => (path, data) =>
+const [get, post, patch, del] = ['get', 'post', 'patch', 'delete'].map(method => (path, data) =>
   axios({
     method,
     url: path,
@@ -17,7 +17,8 @@ export const getSongs = language => get(`songs?native=${language}&second=${langu
 export const createClass = classInfo => post('classes', classInfo);
 export const updateClass = (id, classInfo) => patch(`class/${id}`, classInfo);
 export const updateVideoSize = () => patch('songs/videoSize');
-export const joinClass = id => post(`class/${id}/join`);
+export const joinClass = id => post(`class/${id}/students`);
+export const leaveClass = id => del(`class/${id}/student`);
 export const getClass = id => get(`class/${id}`);
 export const getLanguages = () => get('languages');
 

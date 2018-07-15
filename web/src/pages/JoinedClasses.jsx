@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Popconfirm } from 'antd';
+import { Table, Popconfirm, notification } from 'antd';
 import moment from 'moment';
-import { getJoinedClasses } from '../actions';
+import { getJoinedClasses, leaveClass } from '../actions';
 import formatDate from '../util/formatDate';
 import styles from './Classes.module.css';
 
@@ -15,6 +15,7 @@ class JoinedClasses extends React.Component {
     return (
       <div className={styles.container}>
         <Table
+          expandRowByClick
           pagination={{ hideOnSinglePage: true }}
           dataSource={props.joinedClasses.map(info => ({
             ...info,
@@ -39,6 +40,27 @@ class JoinedClasses extends React.Component {
               defaultSortOrder: 'descend',
               sorter: (a, b) => moment(a.createdOn) - moment(b.createdOn),
             },
+            {
+              title: 'Action',
+              /* eslint-disable jsx-a11y/anchor-is-valid */
+              render: obj => (
+                <Popconfirm
+                  title="Are you sure you want to leave this class?"
+                  onConfirm={() =>
+                    props.leaveClass(obj.id).catch(e =>
+                      notification.error({
+                        message: 'Failed to leave class',
+                        description: e.message,
+                        duration: 0,
+                      }))
+                  }
+                  okText="Yes"
+                >
+                  <a>Leave</a>
+                </Popconfirm>
+              ),
+              /* eslint-enable */
+            },
           ].map(obj => ({
             ...obj,
             align: 'center',
@@ -51,5 +73,5 @@ class JoinedClasses extends React.Component {
 
 export default connect(
   state => ({ joinedClasses: state.joinedClasses, languages: state.languages }),
-  { getJoinedClasses },
+  { getJoinedClasses, leaveClass },
 )(JoinedClasses);

@@ -65,3 +65,10 @@ export const getLanguages = () => dispatch =>
       type: types.SET_LANGUAGES,
       languages,
     }));
+
+export const leaveClass = id => dispatch =>
+  api.leaveClass(id).then(() =>
+    dispatch({
+      type: types.LEAVE_CLASS,
+      id,
+    }));
