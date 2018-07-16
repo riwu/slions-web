@@ -21,6 +21,7 @@ export const joinClass = id => post(`class/${id}/students`);
 export const leaveClass = id => del(`class/${id}/student`);
 export const getClass = id => get(`class/${id}`);
 export const getLanguages = () => get('languages');
+export const removeFromClass = (classId, studentId) => del(`class/${classId}/student/${studentId}`);
 
 if (process.env.NODE_ENV !== 'development') {
   post('session', { referrer: document.referrer });

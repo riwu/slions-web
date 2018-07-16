@@ -5,7 +5,7 @@ import Home from '../pages/Home';
 import Classes from '../pages/Classes';
 import JoinedClasses from '../pages/JoinedClasses';
 import JoinClass from '../pages/JoinClass';
-import Navigation from '../components/Navigation';
+import Navigation from './Navigation';
 
 const Routes = () => (
   <BrowserRouter>

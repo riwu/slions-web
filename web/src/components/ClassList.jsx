@@ -9,7 +9,7 @@ import formatDate from '../util/formatDate';
 const ClassList = props => (
   <Table
     expandRowByClick
-    expandedRowRender={Students}
+    expandedRowRender={rowProps => <Students {...rowProps} />}
     pagination={{ hideOnSinglePage: true }}
     dataSource={Object.entries(props.classes).map(([id, classInfo]) => {
       const students = Object.entries(classInfo.students || {}).map(([studentId, student]) => {
@@ -59,6 +59,7 @@ const ClassList = props => (
       return {
         ...classInfo,
         key: id,
+        classId: id,
         languageLabel: DATA.LABEL[classInfo.language],
         createdOnText: formatDate(classInfo.createdOn),
         studentsCount: Object.keys(classInfo.students || {}).length,

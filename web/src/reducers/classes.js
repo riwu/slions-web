@@ -1,4 +1,4 @@
-import { SET_CLASSES, SET_CLASS } from '../actions/types';
+import { SET_CLASSES, SET_CLASS, REMOVE_FROM_CLASS } from '../actions/types';
 
 const classes = (state = {}, action) => {
   switch (action.type) {
@@ -12,6 +12,16 @@ const classes = (state = {}, action) => {
           ...action.data,
         },
       };
+    case REMOVE_FROM_CLASS: {
+      const { [action.studentId]: _, ...students } = state[action.classId].students;
+      return {
+        ...state,
+        [action.classId]: {
+          ...state[action.classId],
+          students,
+        },
+      };
+    }
     default:
       return state;
   }

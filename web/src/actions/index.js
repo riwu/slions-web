@@ -72,3 +72,11 @@ export const leaveClass = id => dispatch =>
       type: types.LEAVE_CLASS,
       id,
     }));
+
+export const removeFromClass = (classId, studentId) => dispatch =>
+  api.removeFromClass(classId, studentId).then(() =>
+    dispatch({
+      type: types.REMOVE_FROM_CLASS,
+      classId,
+      studentId,
+    }));

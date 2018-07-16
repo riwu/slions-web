@@ -7,7 +7,7 @@ const Navigation = () => (
     {[
       {
         link: 'classes',
-        label: 'My Classes',
+        label: 'My classes',
       },
       {
         link: 'classes/joined',

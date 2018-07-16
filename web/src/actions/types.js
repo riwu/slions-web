@@ -5,3 +5,4 @@ export const SET_SONGS = 'SET_SONGS';
 export const SET_CLASS = 'SET_CLASS';
 export const SET_LANGUAGES = 'SET_LANGUAGES';
 export const LEAVE_CLASS = 'LEAVE_CLASS';
+export const REMOVE_FROM_CLASS = 'REMOVE_FROM_CLASS';
