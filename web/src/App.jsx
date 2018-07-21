@@ -6,6 +6,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { hot } from 'react-hot-loader';
 import thunk from 'redux-thunk';
+import { notification } from 'antd';
 import reducer from './reducers';
 import Routes from './routes';
 import { getLanguages } from './actions';
@@ -26,6 +27,8 @@ const persistor = persistStore(store);
 // persistor.purge();
 
 store.dispatch(getLanguages());
+
+notification.config({ duration: 0 });
 
 const App = () => (
   <Provider store={store}>

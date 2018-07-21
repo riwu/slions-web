@@ -53,7 +53,6 @@ class JoinedClasses extends React.Component {
                         notification.error({
                           message: 'Failed to leave class',
                           description: e.message,
-                          duration: 0,
                         }))
                   }
                   okText="Yes"

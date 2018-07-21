@@ -42,7 +42,6 @@ const Students = props => (
                   notification.error({
                     message: 'Failed to remove the student from class',
                     description: err.message,
-                    duration: 0,
                   }));
             }}
             onCancel={e => e.stopPropagation()}

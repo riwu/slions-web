@@ -8,7 +8,7 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
     {...rest}
     render={(props) => {
       if (isAuthenticated) return <Component {...props} />;
-      notification.info({ message: 'Please login first!', placement: 'topLeft', duration: 0 });
+      notification.info({ message: 'Please login first!', placement: 'topLeft' });
       return (
         <Redirect
           push
