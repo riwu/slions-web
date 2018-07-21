@@ -45,7 +45,7 @@ class JoinClass extends React.Component {
                 joinClass(id)
                   .then(() => {
                     message.success(`Successfully joined ${this.state.title}`);
-                    props.history.push('/classes');
+                    props.history.push('/classes/joined');
                   })
                   .catch((e) => {
                     if (e.response.status === 409) {

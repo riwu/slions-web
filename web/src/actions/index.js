@@ -70,3 +70,11 @@ export const removeFromClass = (classId, studentId) => dispatch =>
       classId,
       studentId,
     }));
+
+export const logOut = () => (dispatch) => {
+  // log out even if session clearing fails
+  dispatch({
+    type: types.LOG_OUT,
+  });
+  api.logout(); // clears session
+};

@@ -1,6 +1,8 @@
-import { SET_CLASSES, SET_CLASS, REMOVE_FROM_CLASS } from '../actions/types';
+import { SET_CLASSES, SET_CLASS, REMOVE_FROM_CLASS, LOG_OUT } from '../actions/types';
 
-const classes = (state = {}, action) => {
+const initialState = {};
+
+const classes = (state = initialState, action) => {
   switch (action.type) {
     case SET_CLASSES:
       return action.classes;
@@ -22,6 +24,8 @@ const classes = (state = {}, action) => {
         },
       };
     }
+    case LOG_OUT:
+      return initialState;
     default:
       return state;
   }

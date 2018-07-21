@@ -18,6 +18,7 @@ const handlePostActivity = (data) => {
 export const register = user => post('users', user).then(handlePostActivity);
 export const login = (username, password) =>
   post('sessions', { username, password }).then(handlePostActivity);
+export const logout = () => del('session');
 export const getClasses = () => get('classes');
 export const getJoinedClasses = () => get('classes/joined');
 export const getSongs = language => get(`songs?native=${language}&second=${language}`);

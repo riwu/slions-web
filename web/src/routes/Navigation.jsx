@@ -1,8 +1,11 @@
 import React from 'react';
-import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Menu, Dropdown, Icon } from 'antd';
+import { Link, withRouter } from 'react-router-dom';
+import { logOut } from '../actions';
+import styles from './Navigation.module.css';
 
-const Navigation = () => (
+const Navigation = props => (
   <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[window.location.pathname]}>
     {[
       {
@@ -18,7 +21,32 @@ const Navigation = () => (
         <Link to={`/${menu.link}`}>{menu.label}</Link>
       </Menu.Item>
     ))}
+
+    <div className={styles.profile}>
+      <Dropdown
+        overlay={
+          <Menu>
+            <Menu.Item
+              onClick={() => {
+                props.history.push('/');
+                props.logOut();
+              }}
+            >
+              Log out
+            </Menu.Item>
+          </Menu>
+        }
+      >
+        <span>
+          {`${props.username} `}
+          <Icon type="down" />
+        </span>
+      </Dropdown>
+    </div>
   </Menu>
 );
 
-export default Navigation;
+export default connect(
+  state => ({ username: state.user.username }),
+  { logOut },
+)(withRouter(Navigation));
