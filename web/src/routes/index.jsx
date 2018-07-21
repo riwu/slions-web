@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
 import PrivateRoute from './PrivateRoute';
 import Home from '../pages/Home';
 import Classes from '../pages/Classes';
@@ -7,8 +8,10 @@ import JoinedClasses from '../pages/JoinedClasses';
 import JoinClass from '../pages/JoinClass';
 import Navigation from './Navigation';
 
+export const history = createBrowserHistory();
+
 const Routes = () => (
-  <BrowserRouter>
+  <Router history={history}>
     <Switch>
       <Route exact path="/" component={Home} />
       <PrivateRoute path="/class/:id/join" component={JoinClass} />
@@ -20,7 +23,7 @@ const Routes = () => (
         </Switch>
       </React.Fragment>
     </Switch>
-  </BrowserRouter>
+  </Router>
 );
 
 export default Routes;

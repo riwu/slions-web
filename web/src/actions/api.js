@@ -1,4 +1,5 @@
 import axios from 'axios';
+import handleSessionExpired from '../util/handleSessionExpired';
 
 axios.defaults.baseURL = `${window.location.origin}/api/`;
 
@@ -7,7 +8,9 @@ const [get, post, patch, del] = ['get', 'post', 'patch', 'delete'].map(method =>
     method,
     url: path,
     data,
-  }).then(response => response.data));
+  })
+    .then(response => response.data)
+    .catch(handleSessionExpired));
 
 const postActivity = () => post('activity', { referrer: document.referrer });
 const handlePostActivity = (data) => {
