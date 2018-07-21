@@ -71,10 +71,14 @@ export const removeFromClass = (classId, studentId) => dispatch =>
       studentId,
     }));
 
+export const clearUserData = () => ({
+  type: types.DELETE_USER_DATA,
+});
+
 export const logOut = () => (dispatch) => {
-  // log out even if session clearing fails
+  // log out even if session deletion fails
   dispatch({
-    type: types.LOG_OUT,
+    type: types.DELETE_USER_DATA,
   });
-  api.logout(); // clears session
+  api.deleteSession();
 };

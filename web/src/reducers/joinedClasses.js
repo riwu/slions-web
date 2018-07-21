@@ -1,4 +1,4 @@
-import { SET_JOINED_CLASSES, LEAVE_CLASS, LOG_OUT } from '../actions/types';
+import { SET_JOINED_CLASSES, LEAVE_CLASS, DELETE_USER_DATA } from '../actions/types';
 
 const initialState = [];
 
@@ -8,7 +8,7 @@ const classes = (state = initialState, action) => {
       return action.classes;
     case LEAVE_CLASS:
       return state.filter(info => info.id !== action.id);
-    case LOG_OUT:
+    case DELETE_USER_DATA:
       return initialState;
     default:
       return state;

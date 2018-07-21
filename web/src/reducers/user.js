@@ -1,4 +1,4 @@
-import { SET_USER, LOG_OUT } from '../actions/types';
+import { SET_USER, DELETE_USER_DATA } from '../actions/types';
 
 const initialState = {
   username: '',
@@ -8,7 +8,7 @@ const user = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
       return { ...state, ...action.user };
-    case LOG_OUT:
+    case DELETE_USER_DATA:
       return initialState;
     default:
       return state;

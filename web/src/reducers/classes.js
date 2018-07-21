@@ -1,4 +1,4 @@
-import { SET_CLASSES, SET_CLASS, REMOVE_FROM_CLASS, LOG_OUT } from '../actions/types';
+import { SET_CLASSES, SET_CLASS, REMOVE_FROM_CLASS, DELETE_USER_DATA } from '../actions/types';
 
 const initialState = {};
 
@@ -24,7 +24,7 @@ const classes = (state = initialState, action) => {
         },
       };
     }
-    case LOG_OUT:
+    case DELETE_USER_DATA:
       return initialState;
     default:
       return state;
