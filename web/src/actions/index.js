@@ -2,24 +2,14 @@ import * as api from './api';
 import * as types from './types';
 
 export const login = (username, password) => dispatch =>
-  api
-    .login(username, password)
-    .then(({ user }) =>
-      dispatch({
-        type: types.SET_USER,
-        user: {
-          username: user.username,
-          isAdmin: user.isAdmin,
-        },
-      }))
-    .catch((e) => {
-      if (((e || {}).response || {}).status === 401) {
-        alert('Username or password is wrong');
-      } else {
-        alert('Unable to connect to the server, check your internet connection');
-      }
-      throw e; // throw even when 401 so that promise is rejected
-    });
+  api.login(username, password).then(({ user }) =>
+    dispatch({
+      type: types.SET_USER,
+      user: {
+        username: user.username,
+        isAdmin: user.isAdmin,
+      },
+    }));
 
 export const getClasses = () => dispatch =>
   api.getClasses().then(classes =>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Icon, Input, Button } from 'antd';
+import { Form, Icon, Input, Button, notification } from 'antd';
 import { login } from '../actions';
 
 class Login extends React.Component {
@@ -12,7 +12,21 @@ class Login extends React.Component {
         return;
       }
       console.log('Received values of form: ', values);
-      this.props.login(values.username, values.password).then(this.props.onLogin);
+      this.props
+        .login(values.username, values.password)
+        .then(this.props.onLogin)
+        .catch((error) => {
+          if (((error || {}).response || {}).status === 401) {
+            notification.error({ message: 'Username or password is wrong', placement: 'topLeft' });
+          } else {
+            notification.error({
+              message: 'Failed to login',
+              description: error.message,
+              placement: 'topLeft',
+            });
+          }
+          throw error; // throw even when 401 so that promise is rejected
+        });
     });
   };
   render() {
@@ -46,4 +60,7 @@ class Login extends React.Component {
   }
 }
 
-export default connect(null, { login })(Form.create()(Login));
+export default connect(
+  null,
+  { login },
+)(Form.create()(Login));
