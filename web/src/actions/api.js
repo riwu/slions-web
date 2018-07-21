@@ -9,8 +9,15 @@ const [get, post, patch, del] = ['get', 'post', 'patch', 'delete'].map(method =>
     data,
   }).then(response => response.data));
 
-export const register = user => post('users', user);
-export const login = (username, password) => post('sessions', { username, password });
+const postActivity = () => post('activity', { referrer: document.referrer });
+const handlePostActivity = (data) => {
+  postActivity();
+  return data;
+};
+
+export const register = user => post('users', user).then(handlePostActivity);
+export const login = (username, password) =>
+  post('sessions', { username, password }).then(handlePostActivity);
 export const getClasses = () => get('classes');
 export const getJoinedClasses = () => get('classes/joined');
 export const getSongs = language => get(`songs?native=${language}&second=${language}`);
@@ -24,5 +31,5 @@ export const getLanguages = () => get('languages');
 export const removeFromClass = (classId, studentId) => del(`class/${classId}/student/${studentId}`);
 
 if (process.env.NODE_ENV !== 'development') {
-  post('session', { referrer: document.referrer });
+  postActivity();
 }
