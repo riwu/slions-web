@@ -1,23 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { notification } from 'antd';
 import Anchor from '../components/Anchor';
 import { AppStore, GooglePlay, AppIcon } from '../assets/images';
 import Login from '../components/Login';
+import LoggedIn from '../components/LoggedIn';
 import styles from './Home.module.css';
 
 const Home = props => (
   <div className={styles.container}>
-    <Login
-      className={styles.login}
-      onLogin={() => {
-        if ((props.location.state || {}).redirected) {
-          props.history.goBack();
-        } else {
-          props.history.push('/classes');
-        }
-        notification.destroy();
-      }}
-    />
+    {props.username ? (
+      <LoggedIn username={props.username} history={props.history} className={styles.login} />
+    ) : (
+      <Login
+        className={styles.login}
+        onLogin={() => {
+          if ((props.location.state || {}).redirected) {
+            props.history.goBack();
+          } else {
+            props.history.push('/classes');
+          }
+          notification.destroy();
+        }}
+      />
+    )}
     <AppIcon />
     <h1>Welcome to SLIONS</h1>
     <h2>
@@ -44,4 +50,4 @@ const Home = props => (
   </div>
 );
 
-export default Home;
+export default connect(state => ({ username: state.user.username }))(Home);
