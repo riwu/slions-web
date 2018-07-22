@@ -1,5 +1,8 @@
+import { notification } from 'antd';
 import * as api from './api';
 import * as types from './types';
+
+const displayError = (e, title) => notification.error({ message: title, description: e.message });
 
 export const login = (username, password) => dispatch =>
   api.login(username, password).then(({ user }) =>
@@ -12,26 +15,35 @@ export const login = (username, password) => dispatch =>
     }));
 
 export const getClasses = () => dispatch =>
-  api.getClasses().then(classes =>
-    dispatch({
-      type: types.SET_CLASSES,
-      classes,
-    }));
+  api
+    .getClasses()
+    .then(classes =>
+      dispatch({
+        type: types.SET_CLASSES,
+        classes,
+      }))
+    .catch(e => displayError(e, 'Failed to retrieve updated classes'));
 
 export const getJoinedClasses = () => dispatch =>
-  api.getJoinedClasses().then(classes =>
-    dispatch({
-      type: types.SET_JOINED_CLASSES,
-      classes,
-    }));
+  api
+    .getJoinedClasses()
+    .then(classes =>
+      dispatch({
+        type: types.SET_JOINED_CLASSES,
+        classes,
+      }))
+    .catch(e => displayError(e, 'Failed to retrieve updated classes'));
 
 export const getSongs = language => dispatch =>
-  api.getSongs(language).then(songs =>
-    dispatch({
-      type: types.SET_SONGS,
-      songs,
-      language,
-    }));
+  api
+    .getSongs(language)
+    .then(songs =>
+      dispatch({
+        type: types.SET_SONGS,
+        songs,
+        language,
+      }))
+    .catch(e => displayError(e, 'Failed to retrieve updated songs'));
 
 export const createClass = data => dispatch =>
   api.createClass(data).then(({ id }) =>
@@ -50,11 +62,14 @@ export const updateClass = ({ id, ...data }) => dispatch =>
     }));
 
 export const getLanguages = () => dispatch =>
-  api.getLanguages().then(languages =>
-    dispatch({
-      type: types.SET_LANGUAGES,
-      languages,
-    }));
+  api
+    .getLanguages()
+    .then(languages =>
+      dispatch({
+        type: types.SET_LANGUAGES,
+        languages,
+      }))
+    .catch(e => displayError(e, 'Failed to get updated languages'));
 
 export const leaveClass = id => dispatch =>
   api.leaveClass(id).then(() =>

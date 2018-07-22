@@ -16,16 +16,12 @@ class Login extends React.Component {
         .login(values.username, values.password)
         .then(this.props.onLogin)
         .catch((error) => {
-          if (((error || {}).response || {}).status === 401) {
-            notification.error({ message: 'Username or password is wrong', placement: 'topLeft' });
-          } else {
-            notification.error({
-              message: 'Failed to login',
-              description: error.message,
-              placement: 'topLeft',
-            });
-          }
-          throw error; // throw even when 401 so that promise is rejected
+          const isUnauthenticated = ((error || {}).response || {}).status === 401;
+          notification.error({
+            message: isUnauthenticated ? 'Username or password is wrong' : 'Failed to login',
+            description: !isUnauthenticated && error.message,
+            placement: 'topLeft',
+          });
         });
     });
   };

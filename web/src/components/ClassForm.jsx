@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Modal, Input, Form, Select } from 'antd';
+import { Modal, Input, Form, Select, notification } from 'antd';
 import { DATA } from '../util/languages';
 import PickSong from './PickSong';
 
@@ -20,6 +20,10 @@ class ClassForm extends React.Component {
     };
   }
 
+  onSongsUpdate = (songs) => {
+    this.setState({ songs });
+  };
+
   // eslint-disable-next-line no-unused-vars
   toggleModal = (e, data) => this.setState(({ visible }) => ({ visible: !visible, ...data }));
 
@@ -27,16 +31,7 @@ class ClassForm extends React.Component {
     this.setState({ language });
   };
 
-  handleSongSelect = (songId, state) => {
-    this.setState(prevState => ({
-      songs: {
-        ...prevState.songs,
-        [songId]: state,
-      },
-    }));
-  };
-
-  handleCreate = () => {
+  handleSave = () => {
     this.props
       .onOk({
         ...(this.state.key !== null && { id: this.state.key }),
@@ -45,7 +40,7 @@ class ClassForm extends React.Component {
         songs: this.state.songs,
       })
       .then(() => this.setState({ visible: false }))
-      .catch(e => alert(`Error: ${e.message}`));
+      .catch(e => notification.error({ message: 'Failed to save class', description: e.message }));
   };
 
   render() {
@@ -56,7 +51,7 @@ class ClassForm extends React.Component {
         <Modal
           title={props.label}
           visible={this.state.visible}
-          onOk={this.handleCreate}
+          onOk={this.handleSave}
           okText={props.okText}
           onCancel={this.toggleModal}
         >
@@ -80,7 +75,7 @@ class ClassForm extends React.Component {
 
             <Form.Item label="Songs">
               <PickSong
-                onSelect={this.handleSongSelect}
+                onSongsUpdate={this.onSongsUpdate}
                 songs={this.state.songs}
                 language={this.state.language}
               />

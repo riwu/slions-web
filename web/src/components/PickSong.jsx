@@ -2,6 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Table, Checkbox } from 'antd';
 
+const getUpdatedSongs = (prevSongs, selectedSongId, checked, newValue) => {
+  const { [selectedSongId]: _, ...songs } = prevSongs;
+  return { ...songs, ...(checked && { [selectedSongId]: newValue }) };
+};
+
 const PickSong = props => (
   <Table
     dataSource={Object.entries(props.songsList).map(([id, song]) => ({
@@ -18,7 +23,9 @@ const PickSong = props => (
         render: ({ key }) => (
           <Checkbox
             checked={props.songs[key]}
-            onChange={e => props.onSelect(key, e.target.checked || undefined)}
+            onChange={e =>
+              props.onSongsUpdate(getUpdatedSongs(props.songs, key, e.target.checked, true))
+            }
           />
         ),
       },
@@ -27,7 +34,9 @@ const PickSong = props => (
         render: ({ key }) => (
           <Checkbox
             checked={props.songs[key] === false}
-            onChange={e => props.onSelect(key, e.target.checked ? false : undefined)}
+            onChange={e =>
+              props.onSongsUpdate(getUpdatedSongs(props.songs, key, e.target.checked, false))
+            }
           />
         ),
       },
