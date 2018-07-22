@@ -5,7 +5,9 @@ import { clearUserData } from '../actions';
 
 const handleSessionExpired = (e) => {
   if (((e || {}).response || {}).status === 401) {
-    const { user: username } = store.getState();
+    const {
+      user: { username },
+    } = store.getState();
     if (username) {
       history.push('/', { redirected: true });
       notification.warn({
