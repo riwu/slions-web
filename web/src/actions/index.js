@@ -53,13 +53,34 @@ export const createClass = data => dispatch =>
       data: { ...data, createdOn: new Date() },
     }));
 
-export const updateClass = ({ id, ...data }) => dispatch =>
-  api.updateClass(id, data).then(() =>
+export const updateClass = ({ id, ...data }) => (dispatch, getState) => {
+  const {
+    classes: {
+      [id]: { songs: currentSongs },
+    },
+  } = getState();
+
+  const addedSongs = Object.keys(data.songs).filter(songId => currentSongs[songId] === undefined);
+  const getNewSongs = addedSongs.length
+    ? api.getRecordings(id, addedSongs.join(','))
+    : Promise.resolve({});
+  getNewSongs
+    .then(addedSongsData =>
+      dispatch({
+        type: types.UPDATE_CLASS_SONGS,
+        id,
+        songs: data.songs,
+        addedSongsData,
+      }))
+    .catch(e => displayError(e, 'Failed to get recordings for updated songs'));
+
+  return api.updateClass(id, data).then(() =>
     dispatch({
       type: types.SET_CLASS,
       id,
       data,
     }));
+};
 
 export const getLanguages = () => dispatch =>
   api
