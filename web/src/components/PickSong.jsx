@@ -9,6 +9,7 @@ const getUpdatedSongs = (prevSongs, selectedSongId, checked, newValue) => {
 
 const PickSong = props => (
   <Table
+    pagination={{ hideOnSinglePage: true }}
     dataSource={Object.entries(props.songsList).map(([id, song]) => ({
       key: id,
       name: song.nativeTrackName,

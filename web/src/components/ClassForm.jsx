@@ -10,10 +10,7 @@ class ClassForm extends React.Component {
     const language = Object.keys(DATA.LABEL)[0];
     this.state = {
       visible: false,
-      songs: Object.keys(props.songsList[language] || {}).reduce((acc, id) => {
-        acc[id] = true;
-        return acc;
-      }, {}),
+      songs: this.getDefaultSongs(language),
       language,
       title: '',
       key: null,
@@ -24,11 +21,18 @@ class ClassForm extends React.Component {
     this.setState({ songs });
   };
 
+  getDefaultSongs(language) {
+    return Object.keys(this.props.songsList[language] || {}).reduce((acc, id) => {
+      acc[id] = true;
+      return acc;
+    }, {});
+  }
+
   // eslint-disable-next-line no-unused-vars
   toggleModal = (e, data) => this.setState(({ visible }) => ({ visible: !visible, ...data }));
 
   handleLanguageChange = (language) => {
-    this.setState({ language });
+    this.setState({ language, songs: this.getDefaultSongs(language) });
   };
 
   handleSave = () => {
