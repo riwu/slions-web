@@ -9,7 +9,8 @@ import thunk from 'redux-thunk';
 import { notification } from 'antd';
 import reducer from './reducers';
 import Routes from './routes';
-import { getLanguages } from './actions';
+import { getLanguages, getClasses, getSongs } from './actions';
+import { DATA } from './util/languages';
 
 const middleware = [thunk];
 const config = {
@@ -23,10 +24,16 @@ export const store = createStore(
   persistReducer(config, reducer),
   composeEnhancers(applyMiddleware(...middleware)),
 );
-const persistor = persistStore(store);
+const persistor = persistStore(store, null, () => {
+  // is logged in
+  if (store.getState().user.username) {
+    store.dispatch(getClasses());
+  }
+});
 // persistor.purge();
 
 store.dispatch(getLanguages());
+Object.keys(DATA.LABEL).forEach(language => store.dispatch(getSongs(language)));
 
 notification.config({ duration: 0 });
 

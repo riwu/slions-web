@@ -49,6 +49,10 @@ const Class = (props) => {
   );
 };
 
+Class.defaultProps = {
+  class: {},
+};
+
 export default connect((state, ownProps) => ({
   class: state.classes[ownProps.match.params.id],
 }))(Class);

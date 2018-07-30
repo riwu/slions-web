@@ -4,16 +4,6 @@ import * as types from './types';
 
 const displayError = (e, title) => notification.error({ message: title, description: e.message });
 
-export const login = (username, password) => dispatch =>
-  api.login(username, password).then(({ user }) =>
-    dispatch({
-      type: types.SET_USER,
-      user: {
-        username: user.username,
-        isAdmin: user.isAdmin,
-      },
-    }));
-
 export const getClasses = () => dispatch =>
   api
     .getClasses()
@@ -110,6 +100,18 @@ export const removeFromClass = (classId, studentId) => dispatch =>
 export const clearUserData = () => ({
   type: types.DELETE_USER_DATA,
 });
+
+export const login = (username, password) => dispatch =>
+  api.login(username, password).then(({ user }) => {
+    dispatch(getClasses());
+    return dispatch({
+      type: types.SET_USER,
+      user: {
+        username: user.username,
+        isAdmin: user.isAdmin,
+      },
+    });
+  });
 
 export const logOut = () => (dispatch) => {
   // log out even if session deletion fails
