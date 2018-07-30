@@ -13,7 +13,7 @@ class ClassForm extends React.Component {
       songs: this.getDefaultSongs(language),
       language,
       title: '',
-      key: null,
+      classId: null,
     };
   }
 
@@ -28,8 +28,9 @@ class ClassForm extends React.Component {
     }, {});
   }
 
-  // eslint-disable-next-line no-unused-vars
-  toggleModal = (e, data) => this.setState(({ visible }) => ({ visible: !visible, ...data }));
+  toggleModal = (data) => {
+    this.setState(({ visible }) => ({ visible: !visible, ...data }));
+  };
 
   handleLanguageChange = (language) => {
     this.setState({ language, songs: this.getDefaultSongs(language) });
@@ -38,7 +39,7 @@ class ClassForm extends React.Component {
   handleSave = () => {
     this.props
       .onOk({
-        ...(this.state.key !== null && { id: this.state.key }),
+        ...(this.state.classId !== null && { id: this.state.classId }),
         title: this.state.title.trim() || 'Default class title',
         language: this.state.language,
         songs: this.state.songs,
@@ -57,10 +58,10 @@ class ClassForm extends React.Component {
           visible={this.state.visible}
           onOk={this.handleSave}
           okText={props.okText}
-          onCancel={this.toggleModal}
+          onCancel={() => this.toggleModal()}
         >
           <Form layout="horizontal">
-            {props.Share && <props.Share id={this.state.key} />}
+            {props.Share && <props.Share id={this.state.classId} />}
             <Form.Item label="Title">
               <Input
                 placeholder="Enter a class title"

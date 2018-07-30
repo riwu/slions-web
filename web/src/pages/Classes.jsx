@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { getClasses, getSongs } from '../actions';
 import CreateClass from '../components/CreateClass';
 import UpdateVideoSize from '../components/UpdateVideoSize';
-import ClassesList from '../components/ClassesList';
+import ClassList from '../components/ClassList';
 import styles from './Classes.module.css';
 import { DATA } from '../util/languages';
 
-class ClassList extends React.Component {
+class Classes extends React.Component {
   componentDidMount() {
     this.props.getClasses();
     Object.keys(DATA.LABEL).forEach(language => this.props.getSongs(language));
@@ -19,7 +19,7 @@ class ClassList extends React.Component {
           <CreateClass />
           <UpdateVideoSize />
         </div>
-        <ClassesList />
+        <ClassList history={this.props.history} />
       </div>
     );
   }
@@ -28,4 +28,4 @@ class ClassList extends React.Component {
 export default connect(
   null,
   { getClasses, getSongs },
-)(ClassList);
+)(Classes);

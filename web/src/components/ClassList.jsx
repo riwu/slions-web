@@ -1,135 +1,66 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'antd';
+import { Table, Card } from 'antd';
 import moment from 'moment';
-import Students from './Students';
-import { DATA } from '../util/languages';
-import formatDate from '../util/formatDate';
+import computeScore from '../util/computeScore';
+import styles from './ClassList.module.css';
 
 const ClassList = props => (
-  <Table
-    expandRowByClick
-    expandedRowRender={rowProps => <Students {...rowProps} />}
-    pagination={{ hideOnSinglePage: true }}
-    dataSource={Object.entries(props.classes).map(([id, classInfo]) => {
-      const students = Object.entries(classInfo.students || {}).map(([studentId, student]) => {
-        const scores = Object.entries(student.songs).reduce((acc, [songId, sections]) => {
-          const sectionsScores = Object.entries(sections).reduce(
-            (accumulator, [sectionId, section]) => {
-              const sectionScores = Object.entries(section).reduce(
-                (sectionAcc, [timestamp, lines]) => {
-                  const linesArr = Object.values(lines);
-                  sectionAcc[timestamp] = {
-                    score: Math.round((linesArr.reduce((score, line) => score + line.score, 0) / linesArr.length) *
-                        100),
-                    lines,
-                  };
-                  return sectionAcc;
-                },
-                {},
-              );
-              const sectionScoresArr = Object.values(sectionScores).map(({ score }) => score);
-              accumulator[sectionId] = {
-                highest: sectionScoresArr.length && Math.max(...sectionScoresArr),
-                section: sectionScores,
-              };
-              return accumulator;
-            },
-            {},
-          );
-          const sectionScoresArr = Object.values(sectionsScores);
-          acc[songId] = {
-            avg: sectionScoresArr.length
-              ? Math.round(sectionScoresArr.reduce(
-                    (sectionScoresAcc, { highest }) => sectionScoresAcc + highest,
-                    0,
-                  ) / sectionScoresArr.length)
-              : 0,
-            sections: sectionsScores,
-          };
-          return acc;
-        }, {});
-        const scoresArr = Object.values(scores);
-        return {
-          key: studentId,
-          ...student,
-          scores,
-          score: scoresArr.length
-            ? Math.round(scoresArr.reduce((acc, { avg }) => acc + avg, 0) / scoresArr.length)
-            : 0,
-        };
-      });
-      const scores = students.length === 0 ? [0] : students.map(({ score }) => score);
-      return {
-        ...classInfo,
-        key: id,
-        classId: id,
-        languageLabel: DATA.LABEL[classInfo.language],
-        createdOnText: formatDate(classInfo.createdOn),
-        studentsCount: Object.keys(classInfo.students || {}).length,
-        students,
-        avgScore: Math.round(scores.reduce((sum, score) => sum + score) / scores.length) || 0,
-        highestScore: Math.max(...scores),
-        lowestScore: Math.min(...scores),
-      };
-    })}
-    columns={[
-      {
-        title: 'Title',
-        dataIndex: 'title',
-        sorter: (a, b) => a.title.localeCompare(b.title),
-      },
-      {
-        title: 'Language',
-        dataIndex: 'languageLabel',
-        sorter: (a, b) => a.languageLabel.localeCompare(b.languageLabel),
-      },
-      {
-        title: 'Created On',
-        dataIndex: 'createdOnText',
-        defaultSortOrder: 'descend',
-        sorter: (a, b) => moment(a.createdOn) - moment(b.createdOn),
-      },
-      {
-        title: 'Students',
-        dataIndex: 'studentsCount',
-        sorter: (a, b) => a.studentsCount - b.studentsCount,
-      },
-      {
-        title: 'Average Score',
-        dataIndex: 'avgScore',
-        sorter: (a, b) => a.avgScore - b.avgScore,
-      },
-      {
-        title: 'Highest Score',
-        dataIndex: 'highestScore',
-        sorter: (a, b) => a.highestScore - b.highestScore,
-      },
-      {
-        title: 'Lowest Score',
-        dataIndex: 'lowestScore',
-        sorter: (a, b) => a.lowestScore - b.lowestScore,
-      },
-      {
-        title: 'Actions',
-        /* eslint-disable */
-        render: obj => (
-          <a
-            onClick={e => {
-              e.stopPropagation();
-              props.toggleModal(e, obj);
-            }}
-          >
-            Edit
-          </a>
-        ),
-        /* eslint-enable */
-      },
-    ].map(obj => ({
-      ...obj,
-      align: 'center',
-    }))}
-  />
+  <Card>
+    <Table
+      rowClassName={styles.row}
+      onRow={row => ({
+        onClick: () => props.history.push(`/class/${row.key}`),
+      })}
+      pagination={{ hideOnSinglePage: true }}
+      dataSource={Object.entries(props.classes).map(([id, classInfo]) => ({
+          ...classInfo,
+          key: id,
+          ...computeScore(classInfo),
+        }))}
+      columns={[
+        {
+          title: 'Title',
+          dataIndex: 'title',
+          sorter: (a, b) => a.title.localeCompare(b.title),
+        },
+        {
+          title: 'Language',
+          dataIndex: 'languageLabel',
+          sorter: (a, b) => a.languageLabel.localeCompare(b.languageLabel),
+        },
+        {
+          title: 'Created On',
+          dataIndex: 'createdOnText',
+          defaultSortOrder: 'descend',
+          sorter: (a, b) => moment(a.createdOn) - moment(b.createdOn),
+        },
+        {
+          title: 'Students',
+          dataIndex: 'studentsCount',
+          sorter: (a, b) => a.studentsCount - b.studentsCount,
+        },
+        {
+          title: 'Average Score',
+          dataIndex: 'avgScore',
+          sorter: (a, b) => a.avgScore - b.avgScore,
+        },
+        {
+          title: 'Highest Score',
+          dataIndex: 'highestScore',
+          sorter: (a, b) => a.highestScore - b.highestScore,
+        },
+        {
+          title: 'Lowest Score',
+          dataIndex: 'lowestScore',
+          sorter: (a, b) => a.lowestScore - b.lowestScore,
+        },
+      ].map(obj => ({
+        ...obj,
+        align: 'center',
+      }))}
+    />
+  </Card>
 );
 
 export default connect(state => ({ classes: state.classes }))(ClassList);
