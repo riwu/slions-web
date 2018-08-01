@@ -7,6 +7,10 @@
   margin: 20px;
 }
 
+.teacherList {
+  margin: 20px 0;
+}
+
 .editButton {
   float: right;
 }

@@ -29,4 +29,5 @@ const SongDetails = props => (
     }))}
   />
 );
+
 export default SongDetails;

@@ -2,11 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Card, Row, Col } from 'antd';
 import Students from '../components/Students';
+import Teachers from '../components/Teachers';
 import EditClass from '../components/EditClass';
 import computeScore from '../util/computeScore';
 import styles from './Class.module.css';
 
 const Class = (props) => {
+  const classId = props.match.params.id;
   const classInfo = computeScore(props.class, props.languages);
   return (
     <div className={styles.container}>
@@ -15,10 +17,7 @@ const Class = (props) => {
           title={
             <div>
               Class Profile
-              <EditClass
-                class={{ ...props.class, classId: props.match.params.id }}
-                className={styles.editButton}
-              />
+              <EditClass class={{ ...props.class, classId }} className={styles.editButton} />
             </div>
           }
         >
@@ -39,10 +38,17 @@ const Class = (props) => {
             </Row>
           ))}
         </Card>
+        <Card title="Teacher List" className={styles.teacherList}>
+          <Teachers teachers={props.class.teachers} classId={classId} />
+        </Card>
       </div>
       <div className={styles.studentList}>
         <Card title="Student List">
-          <Students students={classInfo.students} language={props.class.language} />
+          <Students
+            students={classInfo.students}
+            language={props.class.language}
+            classId={classId}
+          />
         </Card>
       </div>
     </div>

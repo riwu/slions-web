@@ -33,6 +33,8 @@ export const leaveClass = id => del(`class/${id}/student`);
 export const getClass = id => get(`class/${id}`);
 export const getLanguages = () => get('languages');
 export const removeFromClass = (classId, studentId) => del(`class/${classId}/student/${studentId}`);
+export const promoteToTeacher = (classId, studentId) =>
+  patch(`class/${classId}/student/${studentId}`, { isTeacher: true });
 export const getRecordings = (classId, songs) => get(`class/${classId}/recordings?songs=${songs}`);
 
 if (process.env.NODE_ENV !== 'development') {

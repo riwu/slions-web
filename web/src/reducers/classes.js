@@ -4,6 +4,7 @@ import {
   REMOVE_FROM_CLASS,
   DELETE_USER_DATA,
   UPDATE_CLASS_SONGS,
+  PROMOTE_TO_TEACHER,
 } from '../actions/types';
 
 const initialState = {};
@@ -41,12 +42,31 @@ const classes = (state = initialState, action) => {
         },
       };
     case REMOVE_FROM_CLASS: {
-      const { [action.studentId]: _, ...students } = state[action.classId].students;
+      const { [action.studentId]: student, ...students } = state[action.classId].students;
+      const { [action.studentId]: teacher, ...teachers } = state[action.classId].teachers;
       return {
         ...state,
         [action.classId]: {
           ...state[action.classId],
           students,
+          teachers,
+        },
+      };
+    }
+    case PROMOTE_TO_TEACHER: {
+      const { [action.studentId]: student, ...students } = state[action.classId].students;
+      return {
+        ...state,
+        [action.classId]: {
+          ...state[action.classId],
+          students,
+          teachers: {
+            ...state[action.classId].teachers,
+            [action.studentId]: {
+              username: student.username,
+              email: student.email,
+            },
+          },
         },
       };
     }

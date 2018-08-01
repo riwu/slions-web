@@ -97,6 +97,14 @@ export const removeFromClass = (classId, studentId) => dispatch =>
       studentId,
     }));
 
+export const promoteToTeacher = (classId, studentId) => dispatch =>
+  api.promoteToTeacher(classId, studentId).then(() =>
+    dispatch({
+      type: types.PROMOTE_TO_TEACHER,
+      classId,
+      studentId,
+    }));
+
 export const clearUserData = () => ({
   type: types.DELETE_USER_DATA,
 });
