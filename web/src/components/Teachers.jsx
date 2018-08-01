@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Table, Popconfirm, notification, message } from 'antd';
+import moment from 'moment';
 import { removeFromClass } from '../actions';
+import formatDate from '../util/formatDate';
 import styles from './ClassList.module.css';
 
 const Teachers = props => (
@@ -12,6 +14,7 @@ const Teachers = props => (
     })}
     dataSource={Object.entries(props.teachers).map(([id, teacher]) => ({
       key: id,
+      insertedOnText: formatDate(teacher.insertedOn),
       ...teacher,
     }))}
     pagination={{ hideOnSinglePage: true }}
@@ -25,6 +28,12 @@ const Teachers = props => (
         title: 'Email',
         dataIndex: 'email',
         sorter: (a, b) => a.email.localeCompare(b.email),
+      },
+      {
+        title: 'Joined',
+        dataIndex: 'insertedOnText',
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => moment(a.insertedOn) - moment(b.insertedOn),
       },
       {
         title: 'Action',

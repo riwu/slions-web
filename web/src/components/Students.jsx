@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Table, Popconfirm, notification, message, Modal, Divider } from 'antd';
+import moment from 'moment';
 import StudentDetails from './StudentDetails';
 import { removeFromClass, promoteToTeacher } from '../actions';
+import formatDate from '../util/formatDate';
 import styles from './ClassList.module.css';
 
 class Students extends React.Component {
@@ -28,7 +30,10 @@ class Students extends React.Component {
           onRow={student => ({
             onClick: () => this.setState({ student, visible: true }),
           })}
-          dataSource={props.students}
+          dataSource={props.students.map(student => ({
+            ...student,
+            insertedOnText: formatDate(student.insertedOn),
+          }))}
           pagination={{ hideOnSinglePage: true }}
           columns={[
             {
@@ -46,6 +51,11 @@ class Students extends React.Component {
               dataIndex: 'score',
               defaultSortOrder: 'ascend',
               sorter: (a, b) => a.score - b.score,
+            },
+            {
+              title: 'Joined',
+              dataIndex: 'insertedOnText',
+              sorter: (a, b) => moment(a.insertedOn) - moment(b.insertedOn),
             },
             {
               title: 'Action',
