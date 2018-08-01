@@ -1,6 +1,7 @@
 import {
   SET_CLASSES,
   SET_CLASS,
+  DELETE_CLASS,
   REMOVE_FROM_CLASS,
   DELETE_USER_DATA,
   UPDATE_CLASS_SONGS,
@@ -21,6 +22,10 @@ const classes = (state = initialState, action) => {
           ...action.data,
         },
       };
+    case DELETE_CLASS: {
+      const { [action.id]: _, ...others } = state;
+      return others;
+    }
     case UPDATE_CLASS_SONGS:
       return {
         ...state,

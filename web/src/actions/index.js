@@ -72,6 +72,13 @@ export const updateClass = ({ id, ...data }) => (dispatch, getState) => {
     }));
 };
 
+export const deleteClass = id => dispatch =>
+  api.deleteClass(id).then(() =>
+    dispatch({
+      type: types.DELETE_CLASS,
+      id,
+    }));
+
 export const getLanguages = () => dispatch =>
   api
     .getLanguages()

@@ -27,6 +27,7 @@ export const getJoinedClasses = () => get('classes/joined');
 export const getSongs = language => get(`songs?native=${language}&second=${language}`);
 export const createClass = classInfo => post('classes', classInfo);
 export const updateClass = (id, classInfo) => patch(`class/${id}`, classInfo);
+export const deleteClass = id => del(`class/${id}`);
 export const updateVideoSize = () => patch('songs/videoSize');
 export const joinClass = id => post(`class/${id}/students`);
 export const leaveClass = id => del(`class/${id}/student`);

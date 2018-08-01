@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Card } from 'antd';
+import { Table, Card, Popconfirm, message, notification } from 'antd';
 import moment from 'moment';
 import computeScore from '../util/computeScore';
+import { deleteClass } from '../actions';
 import styles from './ClassList.module.css';
 
 const ClassList = props => (
@@ -55,6 +56,32 @@ const ClassList = props => (
           dataIndex: 'lowestScore',
           sorter: (a, b) => a.lowestScore - b.lowestScore,
         },
+        {
+          title: 'Action',
+          /* eslint-disable jsx-a11y/anchor-is-valid */
+          render: obj => (
+            <Popconfirm
+              title={`Are you sure you want to delete the class: ${obj.title}?`}
+              onConfirm={(e) => {
+                e.stopPropagation();
+                props
+                  .deleteClass(obj.key)
+                  .then(() => message.success(`Successfully deleted the class: ${obj.title}!`))
+                  .catch(err =>
+                    notification.error({
+                      message: `Failed to delete the class: ${obj.title}`,
+                      description: err.message,
+                    }));
+              }}
+              onCancel={e => e.stopPropagation()}
+              okText="Yes"
+              onClick={e => e.stopPropagation()}
+            >
+              <a>Delete</a>
+            </Popconfirm>
+          ),
+          /* eslint-enable */
+        },
       ].map(obj => ({
         ...obj,
         align: 'center',
@@ -63,7 +90,10 @@ const ClassList = props => (
   </Card>
 );
 
-export default connect(state => ({
-  classes: state.classes,
-  languages: state.languages,
-}))(ClassList);
+export default connect(
+  state => ({
+    classes: state.classes,
+    languages: state.languages,
+  }),
+  { deleteClass },
+)(ClassList);
