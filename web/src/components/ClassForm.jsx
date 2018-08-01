@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Modal, Input, Form, Select, notification } from 'antd';
-import { DATA } from '../util/languages';
 import PickSong from './PickSong';
 
 class ClassForm extends React.Component {
   constructor(props) {
     super(props);
-    const language = Object.keys(DATA.LABEL)[0];
+    const language = Object.keys(props.languages)[0];
     this.state = {
       visible: false,
       songs: this.getDefaultSongs(language),
@@ -72,7 +71,7 @@ class ClassForm extends React.Component {
 
             <Form.Item label="Language">
               <Select value={this.state.language} onChange={this.handleLanguageChange}>
-                {Object.entries(DATA.LABEL).map(([language, label]) => (
+                {Object.entries(props.languages).map(([language, label]) => (
                   <Select.Option key={language}>{label}</Select.Option>
                 ))}
               </Select>
@@ -92,4 +91,4 @@ class ClassForm extends React.Component {
   }
 }
 
-export default connect(state => ({ songsList: state.songs }))(ClassForm);
+export default connect(state => ({ songsList: state.songs, languages: state.languages }))(ClassForm);

@@ -11,7 +11,7 @@ const SongDetails = props => (
       key: id,
       score: section.highest,
       section: section.section,
-      name: (props.sectionsNames[id] || {}).name,
+      name: ((props.sectionsNames || {})[id] || {}).name,
       recordingBaseURL: props.recordingBaseURL,
     }))}
     columns={[

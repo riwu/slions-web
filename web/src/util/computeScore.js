@@ -1,7 +1,6 @@
-import { DATA } from './languages';
 import formatDate from './formatDate';
 
-const computeScores = (classInfo) => {
+const computeScores = (classInfo, languages) => {
   const students = Object.entries(classInfo.students || {}).map(([studentId, student]) => {
     const scores = Object.entries(student.songs).reduce((acc, [songId, sections]) => {
       const sectionsScores = Object.entries(sections).reduce(
@@ -47,7 +46,7 @@ const computeScores = (classInfo) => {
   });
   const scores = students.length === 0 ? [0] : students.map(({ score }) => score);
   return {
-    languageLabel: DATA.LABEL[classInfo.language],
+    languageLabel: languages[classInfo.language],
     createdOnText: formatDate(classInfo.createdOn),
     studentsCount: Object.keys(classInfo.students || {}).length,
     students,

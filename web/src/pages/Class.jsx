@@ -7,7 +7,7 @@ import computeScore from '../util/computeScore';
 import styles from './Class.module.css';
 
 const Class = (props) => {
-  const classInfo = computeScore(props.class);
+  const classInfo = computeScore(props.class, props.languages);
   return (
     <div className={styles.container}>
       <div className={styles.profile}>
@@ -55,4 +55,5 @@ Class.defaultProps = {
 
 export default connect((state, ownProps) => ({
   class: state.classes[ownProps.match.params.id],
+  languages: state.languages,
 }))(Class);

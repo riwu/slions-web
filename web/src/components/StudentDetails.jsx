@@ -8,14 +8,17 @@ const StudentDetails = props => (
     expandRowByClick
     expandedRowRender={SongDetails}
     pagination={{ hideOnSinglePage: true }}
-    dataSource={Object.entries(props.scores).map(([id, song]) => ({
-      key: id,
-      name: (props.songs[id] || {}).nativeTrackName,
-      sectionsNames: (props.songs[id] || {}).sections,
-      score: song.avg,
-      sections: song.sections,
-      recordingBaseURL: props.recordingBaseURL,
-    }))}
+    dataSource={Object.entries(props.scores).map(([id, song]) => {
+      const songInfo = (props.songs || {})[id] || {};
+      return {
+        key: id,
+        name: songInfo.nativeTrackName,
+        sectionsNames: songInfo.sections,
+        score: song.avg,
+        sections: song.sections,
+        recordingBaseURL: props.recordingBaseURL,
+      };
+    })}
     columns={[
       {
         title: 'Song',

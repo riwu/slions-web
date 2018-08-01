@@ -10,7 +10,6 @@ import { notification } from 'antd';
 import reducer from './reducers';
 import Routes from './routes';
 import { getLanguages, getClasses, getSongs } from './actions';
-import { DATA } from './util/languages';
 
 const middleware = [thunk];
 const config = {
@@ -32,8 +31,11 @@ const persistor = persistStore(store, null, () => {
 });
 // persistor.purge();
 
-store.dispatch(getLanguages());
-Object.keys(DATA.LABEL).forEach(language => store.dispatch(getSongs(language)));
+store.dispatch(getLanguages()).then((action) => {
+  if ((action || {}).languages) {
+    Object.keys(action.languages).forEach(language => store.dispatch(getSongs(language)));
+  }
+});
 
 notification.config({ duration: 0 });
 

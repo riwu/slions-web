@@ -14,10 +14,10 @@ const ClassList = props => (
       })}
       pagination={{ hideOnSinglePage: true }}
       dataSource={Object.entries(props.classes).map(([id, classInfo]) => ({
-          ...classInfo,
-          key: id,
-          ...computeScore(classInfo),
-        }))}
+        ...classInfo,
+        key: id,
+        ...computeScore(classInfo, props.languages),
+      }))}
       columns={[
         {
           title: 'Title',
@@ -63,4 +63,7 @@ const ClassList = props => (
   </Card>
 );
 
-export default connect(state => ({ classes: state.classes }))(ClassList);
+export default connect(state => ({
+  classes: state.classes,
+  languages: state.languages,
+}))(ClassList);
