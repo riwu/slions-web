@@ -12,7 +12,7 @@ const [get, post, patch, del] = ['get', 'post', 'patch', 'delete'].map(method =>
     .then(response => response.data)
     .catch(handleSessionExpired));
 
-const postActivity = () => post('activity', { referrer: document.referrer });
+const postActivity = () => post('activities', { referrer: document.referrer });
 const handlePostActivity = (data) => {
   postActivity();
   return data;
@@ -21,22 +21,24 @@ const handlePostActivity = (data) => {
 export const register = user => post('users', user).then(handlePostActivity);
 export const login = (username, password) =>
   post('sessions', { username, password }).then(handlePostActivity);
-export const deleteSession = () => del('session');
+export const deleteSession = () => del('sessions/me');
 export const getClasses = () => get('classes');
 export const getJoinedClasses = () => get('classes/joined');
 export const getSongs = language => get(`songs?native=${language}&second=${language}`);
 export const createClass = classInfo => post('classes', classInfo);
-export const updateClass = (id, classInfo) => patch(`class/${id}`, classInfo);
-export const deleteClass = id => del(`class/${id}`);
+export const updateClass = (id, classInfo) => patch(`classes/${id}`, classInfo);
+export const deleteClass = id => del(`classes/${id}`);
 export const updateVideoSize = () => patch('songs/videoSize');
-export const joinClass = id => post(`class/${id}/students`);
-export const leaveClass = id => del(`class/${id}/student`);
-export const getClass = id => get(`class/${id}`);
+export const joinClass = id => post(`classes/${id}/students`);
+export const leaveClass = id => del(`classes/${id}/student`);
+export const getClass = id => get(`classes/${id}`);
 export const getLanguages = () => get('languages');
-export const removeFromClass = (classId, studentId) => del(`class/${classId}/student/${studentId}`);
+export const removeFromClass = (classId, studentId) =>
+  del(`classes/${classId}/student/${studentId}`);
 export const promoteToTeacher = (classId, studentId) =>
-  patch(`class/${classId}/student/${studentId}`, { isTeacher: true });
-export const getRecordings = (classId, songs) => get(`class/${classId}/recordings?songs=${songs}`);
+  patch(`classes/${classId}/student/${studentId}`, { isTeacher: true });
+export const getRecordings = (classId, songs) =>
+  get(`classes/${classId}/recordings?songs=${songs}`);
 
 if (process.env.NODE_ENV !== 'development') {
   postActivity();
