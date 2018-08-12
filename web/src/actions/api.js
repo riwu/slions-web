@@ -21,6 +21,7 @@ const handlePostActivity = (data) => {
 export const register = user => post('users', user).then(handlePostActivity);
 export const login = (username, password) =>
   post('sessions', { username, password }).then(handlePostActivity);
+export const getUser = () => get('/users/me');
 export const deleteSession = () => del('sessions/me');
 export const getClasses = () => get('classes');
 export const getJoinedClasses = () => get('classes/joined');

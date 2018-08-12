@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Button, message } from 'antd';
 import { updateVideoSize } from '../actions/api';
 
-const UpdateVideoSize = props =>
-  props.isAdmin && (
+const UpdateVideoSize = (props) => {
+  if (!props.isAdmin) return null;
+  return (
     <Button
       type="primary"
       onClick={() => {
@@ -23,5 +24,6 @@ const UpdateVideoSize = props =>
       Update video size
     </Button>
   );
+};
 
 export default connect(state => ({ isAdmin: state.user.isAdmin }))(UpdateVideoSize);

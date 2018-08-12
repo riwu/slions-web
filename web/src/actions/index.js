@@ -117,15 +117,20 @@ export const clearUserData = () => ({
 });
 
 export const login = (username, password) => dispatch =>
-  api.login(username, password).then(({ user }) => {
+  api.login(username, password).then(() => {
     dispatch(getClasses());
-    return dispatch({
+    dispatch({
       type: types.SET_USER,
-      user: {
-        username: user.username,
-        isAdmin: user.isAdmin,
-      },
+      user: { username },
     });
+    api.getUser(user =>
+      dispatch({
+        type: types.SET_USER,
+        user: {
+          username: user.username,
+          isAdmin: user.isAdmin,
+        },
+      }));
   });
 
 export const logOut = () => (dispatch) => {
