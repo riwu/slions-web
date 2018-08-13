@@ -12,7 +12,7 @@ const StudentDetails = props => (
       const songInfo = (props.songs || {})[id] || {};
       return {
         key: id,
-        name: songInfo.nativeTrackName,
+        name: songInfo.translatedTrackName,
         sectionsNames: songInfo.sections,
         score: song.avg,
         sections: song.sections,

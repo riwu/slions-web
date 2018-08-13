@@ -12,7 +12,7 @@ const PickSong = props => (
     pagination={{ hideOnSinglePage: true }}
     dataSource={Object.entries(props.songsList).map(([id, song]) => ({
       key: id,
-      name: song.nativeTrackName,
+      name: song.translatedTrackName,
     }))}
     columns={[
       {
