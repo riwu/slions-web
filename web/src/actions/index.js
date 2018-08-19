@@ -123,7 +123,7 @@ export const login = (username, password) => dispatch =>
       type: types.SET_USER,
       user: { username },
     });
-    api.getUser(user =>
+    api.getUser().then(user =>
       dispatch({
         type: types.SET_USER,
         user: {
