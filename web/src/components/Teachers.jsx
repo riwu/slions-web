@@ -14,7 +14,7 @@ const Teachers = props => (
     })}
     dataSource={Object.entries(props.teachers).map(([id, teacher]) => ({
       key: id,
-      insertedOnText: formatDate(teacher.insertedOn),
+      insertedText: formatDate(teacher.inserted),
       ...teacher,
     }))}
     pagination={{ hideOnSinglePage: true }}
@@ -31,9 +31,9 @@ const Teachers = props => (
       },
       {
         title: 'Joined',
-        dataIndex: 'insertedOnText',
+        dataIndex: 'insertedText',
         defaultSortOrder: 'descend',
-        sorter: (a, b) => moment(a.insertedOn) - moment(b.insertedOn),
+        sorter: (a, b) => moment(a.inserted) - moment(b.inserted),
       },
       {
         title: 'Action',

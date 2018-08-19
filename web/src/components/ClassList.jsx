@@ -32,9 +32,9 @@ const ClassList = props => (
         },
         {
           title: 'Created On',
-          dataIndex: 'createdOnText',
+          dataIndex: 'insertedText',
           defaultSortOrder: 'descend',
-          sorter: (a, b) => moment(a.createdOn) - moment(b.createdOn),
+          sorter: (a, b) => moment(a.inserted) - moment(b.inserted),
         },
         {
           title: 'Students',

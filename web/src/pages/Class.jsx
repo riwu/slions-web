@@ -25,7 +25,7 @@ const Class = (props) => {
             { label: 'Class Name', value: props.class.title },
             { label: 'Size', value: classInfo.studentsCount },
             { label: 'Language', value: classInfo.languageLabel },
-            { label: 'Created On', value: classInfo.createdOnText },
+            { label: 'Created On', value: classInfo.insertedText },
             { label: 'Average Score', value: classInfo.avgScore },
             { label: 'Highest Score', value: classInfo.highestScore },
             { label: 'Lowest Score', value: classInfo.lowestScore },

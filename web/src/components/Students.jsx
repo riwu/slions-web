@@ -32,7 +32,7 @@ class Students extends React.Component {
           })}
           dataSource={props.students.map(student => ({
             ...student,
-            insertedOnText: formatDate(student.insertedOn),
+            insertedText: formatDate(student.inserted),
           }))}
           pagination={{ hideOnSinglePage: true }}
           columns={[
@@ -54,8 +54,8 @@ class Students extends React.Component {
             },
             {
               title: 'Joined',
-              dataIndex: 'insertedOnText',
-              sorter: (a, b) => moment(a.insertedOn) - moment(b.insertedOn),
+              dataIndex: 'insertedText',
+              sorter: (a, b) => moment(a.inserted) - moment(b.inserted),
             },
             {
               title: 'Action',

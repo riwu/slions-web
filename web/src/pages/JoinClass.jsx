@@ -36,7 +36,7 @@ class JoinClass extends React.Component {
           </div>
           <div>
             <b>Created On: </b>
-            {formatDate(this.state.createdOn)}
+            {formatDate(this.state.inserted)}
           </div>
           <div className={styles.button}>
             <Button

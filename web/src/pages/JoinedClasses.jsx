@@ -20,7 +20,7 @@ class JoinedClasses extends React.Component {
             dataSource={props.joinedClasses.map(info => ({
               ...info,
               key: info.id,
-              createdOnText: formatDate(info.createdOn),
+              insertedText: formatDate(info.inserted),
               languageLabel: props.languages[info.language],
             }))}
             columns={[
@@ -36,9 +36,9 @@ class JoinedClasses extends React.Component {
               },
               {
                 title: 'Created On',
-                dataIndex: 'createdOnText',
+                dataIndex: 'insertedText',
                 defaultSortOrder: 'descend',
-                sorter: (a, b) => moment(a.createdOn) - moment(b.createdOn),
+                sorter: (a, b) => moment(a.inserted) - moment(b.inserted),
               },
               {
                 title: 'Action',

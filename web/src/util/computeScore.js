@@ -47,7 +47,7 @@ const computeScores = (classInfo, languages) => {
   const scores = students.length === 0 ? [0] : students.map(({ score }) => score);
   return {
     languageLabel: languages[classInfo.language],
-    createdOnText: formatDate(classInfo.createdOn),
+    insertedText: formatDate(classInfo.inserted),
     studentsCount: Object.keys(classInfo.students || {}).length,
     students,
     avgScore: Math.round(scores.reduce((sum, score) => sum + score) / scores.length) || 0,
