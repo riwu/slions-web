@@ -1,18 +1,19 @@
 .container {
-  text-align: center;
-  padding: 20px 10%;
-}
-
-.alertContainer {
+  padding: 10% 5%;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.login {
-  margin-bottom: 50px;
-  text-align: right;
+.leftContainer {
+  margin-bottom: 30px;
+}
+
+.title {
+  font-weight: 900;
 }
 
 .appStore {
-  margin-right: 8px;
+  margin-right: 20px;
 }

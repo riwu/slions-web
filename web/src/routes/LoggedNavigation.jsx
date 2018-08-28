@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Menu, Dropdown, Icon } from 'antd';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { logOut } from '../actions';
 import styles from './Navigation.module.css';
 
-const Navigation = props => (
-  <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[window.location.pathname]}>
+const LoggedNavigation = props => (
+  <Menu
+    theme="dark"
+    mode="horizontal"
+    defaultSelectedKeys={[window.location.pathname]}
+    className={styles.container}
+  >
     {[
       {
         link: 'classes',
@@ -22,7 +27,7 @@ const Navigation = props => (
       </Menu.Item>
     ))}
 
-    <div className={styles.profile}>
+    <div className={styles.rightNav}>
       <Dropdown
         overlay={
           <Menu>
@@ -49,4 +54,4 @@ const Navigation = props => (
 export default connect(
   state => ({ username: state.user.username }),
   { logOut },
-)(withRouter(Navigation));
+)(withRouter(LoggedNavigation));

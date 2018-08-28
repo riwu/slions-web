@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Icon, Input, Button, notification } from 'antd';
+import { Form, Icon, Input, Button, notification, Modal } from 'antd';
 import { login } from '../actions';
 
 class Login extends React.Component {
+  state = {
+    modalVisible: false,
+  };
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -16,6 +19,7 @@ class Login extends React.Component {
         .login(values.username, values.password)
         .then(this.props.onLogin)
         .catch((error) => {
+          console.log('err', error);
           const isUnauthenticated = ((error || {}).response || {}).status === 401;
           notification.error({
             message: isUnauthenticated ? 'Username or password is wrong' : 'Failed to login',
@@ -26,37 +30,62 @@ class Login extends React.Component {
     });
   };
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const { props } = this;
+    const { getFieldDecorator } = props.form;
     return (
-      <Form layout="inline" onSubmit={this.handleSubmit} className={this.props.className}>
-        <Form.Item>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!' }],
-          })(<Input
-            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            placeholder="Username"
-          />)}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }],
-          })(<Input
-            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            type="password"
-            placeholder="Password"
-          />)}
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
-            Log in
-          </Button>
-        </Form.Item>
-      </Form>
+      <React.Fragment>
+        <Button
+          type="primary"
+          onClick={() => {
+            if (props.username) {
+              props.onLogin();
+            } else {
+              this.setState({ modalVisible: true });
+            }
+          }}
+        >
+          {props.username ? (
+            <React.Fragment>
+              Signed in as {props.username} <Icon type="right" />
+            </React.Fragment>
+          ) : (
+            'Sign In'
+          )}
+        </Button>
+        <Modal
+          title="Sign In"
+          visible={this.state.modalVisible}
+          onOk={this.handleSubmit}
+          okText="Sign In"
+          onCancel={() => this.setState({ modalVisible: false })}
+          hideRequiredMark
+        >
+          <Form className={props.className}>
+            <Form.Item label="Username">
+              {getFieldDecorator('username', {
+                rules: [{ required: true, message: 'Please input your username!' }],
+              })(<Input
+                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                placeholder="Enter your username"
+              />)}
+            </Form.Item>
+            <Form.Item label="Password">
+              {getFieldDecorator('password', {
+                rules: [{ required: true, message: 'Please input your password!' }],
+              })(<Input
+                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                type="password"
+                placeholder="Enter your password"
+              />)}
+            </Form.Item>
+          </Form>
+        </Modal>
+      </React.Fragment>
     );
   }
 }
 
 export default connect(
-  null,
+  state => ({ username: state.user.username }),
   { login },
 )(Form.create()(Login));

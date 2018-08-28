@@ -1,5 +1,13 @@
-.profile {
+.container {
+  padding: 0 40px;
+}
+
+.rightNav {
   float: right;
-  margin-right: 30px;
   cursor: pointer;
+  display: flex;
+}
+
+.navMargin {
+  margin-left: 20px;
 }
