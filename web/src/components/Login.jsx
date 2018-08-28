@@ -1,12 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Icon, Input, Button, notification, Modal } from 'antd';
+import { withRouter } from 'react-router-dom';
 import { login } from '../actions';
 
 class Login extends React.Component {
   state = {
     modalVisible: false,
   };
+  onLogin() {
+    const { props } = this;
+    if ((props.location.state || {}).redirected) {
+      props.history.goBack();
+    } else {
+      props.history.push('/classes');
+    }
+    notification.destroy();
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -17,7 +27,7 @@ class Login extends React.Component {
       console.log('Received values of form: ', values);
       this.props
         .login(values.username, values.password)
-        .then(this.props.onLogin)
+        .then(() => this.onLogin())
         .catch((error) => {
           console.log('err', error);
           const isUnauthenticated = ((error || {}).response || {}).status === 401;
@@ -38,7 +48,7 @@ class Login extends React.Component {
           type="primary"
           onClick={() => {
             if (props.username) {
-              props.onLogin();
+              this.onLogin();
             } else {
               this.setState({ modalVisible: true });
             }
@@ -88,4 +98,4 @@ class Login extends React.Component {
 export default connect(
   state => ({ username: state.user.username }),
   { login },
-)(Form.create()(Login));
+)(Form.create()(withRouter(Login)));
