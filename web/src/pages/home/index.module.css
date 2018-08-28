@@ -1,5 +1,11 @@
 .container > * {
-  padding: 30px;
+  padding: 30px 5%;
+}
+
+@media (min-width: 1300px) {
+  .container > * {
+    padding: 30px 10%;
+  }
 }
 
 .container > *:nth-child(even) {
