@@ -1,9 +1,9 @@
-.container {
-  padding-top: 5%;
+.container > * {
+  padding: 30px;
 }
 
-.container > * {
-  margin-bottom: 50px;
+.container > *:nth-child(even) {
+  background-color: #edeeef;
 }
 
 .pageContainer {
@@ -26,5 +26,5 @@
 }
 
 .description {
-  width: 400px;
+  width: 300px;
 }

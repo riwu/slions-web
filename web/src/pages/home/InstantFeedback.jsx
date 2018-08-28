@@ -7,7 +7,7 @@ const InstantFeedback = () => (
     <FeedbackPageImage className={styles.leftContainer} />
 
     <div>
-      <h1 className={styles.title}>Instant feedback loops</h1>
+      <h1 className={styles.title}>Instant feedback loop</h1>
 
       <h3 className={styles.description}>
         Our proprietry Automatic Speech Recognition (ASR) technology provides an immediate feedback

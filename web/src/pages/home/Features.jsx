@@ -21,7 +21,7 @@ const Feature = (props) => {
 const Features = () => (
   <div>
     <h1 className={`${commonStyles.title} ${styles.title}`}>Features</h1>
-    <div className={commonStyles.pageContainer}>
+    <div className={`${commonStyles.pageContainer} ${styles.featureContainer}`}>
       <div>
         {[
           {
@@ -55,13 +55,13 @@ const Features = () => (
           },
           {
             title: 'Instant Feedback',
-            description:
-              'Recieve feedback instantly after your song - helps to accelerate learning.',
+            description: 'Receive feedback instantly after singing - helps to accelerate learning.',
             icon: 'form',
           },
           {
             title: 'Karaoke',
-            description: 'Fun and engaging songs to help you make your learning experience better.',
+            description:
+              'Fun and engaging songs to help you make your learning experience enjoyable.',
             icon: 'sound',
           },
         ].map(data => <Feature {...data} iconLeft />)}

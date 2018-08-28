@@ -7,11 +7,13 @@ const MobileLink = () => (
   <div className={styles.pageContainer}>
     <div className={styles.leftContainer}>
       <h1 className={styles.title}>
-        Language Learning.<br />Made easy, fun and engaging.
+        Language Learning<br />Made easy, fun and engaging
       </h1>
 
       <h3 className={styles.description}>
-        Slions allows you to learn a new language through singing. Get the Slions app now.
+        Slions allows you to learn a new language through singing.
+        <br />
+        Get the Slions app now!
       </h3>
       <br />
       <Anchor className={styles.appStore} href="https://itunes.apple.com/app/id1328375727">

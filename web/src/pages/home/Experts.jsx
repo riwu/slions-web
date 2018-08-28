@@ -12,8 +12,8 @@ const Experts = () => (
       </h1>
 
       <h3 className={styles.description}>
-        Slions has been through extensive user testing, we designed the it from the ground up for
-        the next generation of students.
+        Slions has been through extensive user testing. We designed it from the ground up for the
+        next generation of students.
       </h3>
       <br />
     </div>
