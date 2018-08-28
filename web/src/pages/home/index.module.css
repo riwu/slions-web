@@ -1,5 +1,12 @@
 .container {
-  padding: 10% 5%;
+  padding-top: 5%;
+}
+
+.container > * {
+  margin-bottom: 50px;
+}
+
+.pageContainer {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -16,4 +23,8 @@
 
 .appStore {
   margin-right: 20px;
+}
+
+.description {
+  width: 400px;
 }

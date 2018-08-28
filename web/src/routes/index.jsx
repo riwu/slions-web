@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import PrivateRoute from './PrivateRoute';
-import Home from '../pages/Home';
+import Home from '../pages/home';
 import Classes from '../pages/Classes';
 import Class from '../pages/Class';
 import JoinedClasses from '../pages/JoinedClasses';

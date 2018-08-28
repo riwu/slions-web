@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Anchor = props => (
+const Anchor = ({ children, ...props }) => (
   <a {...props} target="_blank" rel="noopener noreferrer">
-    {props.children}
+    {React.isValidElement(children) ? React.cloneElement(children, { href: props.href }) : children}
   </a>
 );
 

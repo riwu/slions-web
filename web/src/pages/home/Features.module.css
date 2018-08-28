@@ -1,0 +1,17 @@
+.title {
+  text-align: center;
+}
+
+.feature {
+  width: 350px;
+  display: flex;
+  align-items: center;
+}
+
+.feature > * {
+  margin: 10px;
+}
+
+.icon {
+  font-size: 50px;
+}
