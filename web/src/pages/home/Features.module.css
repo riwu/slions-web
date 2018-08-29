@@ -28,3 +28,7 @@
 .selectedIcon {
   background-color: #dc3169;
 }
+
+.hiddenImage {
+  display: none;
+}

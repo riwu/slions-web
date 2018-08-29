@@ -72,7 +72,7 @@ const features = [
   },
 ];
 
-const ITERATIONS_TO_SKIP_WHEN_SELECTED = 5;
+const ITERATIONS_TO_SKIP_WHEN_SELECTED = 4;
 
 class Features extends React.Component {
   state = {
@@ -127,6 +127,9 @@ class Features extends React.Component {
               ))}
           </div>
         </div>
+
+        {/* preload images to prevent flicking when animating through unloaded images */}
+        {features.map(({ image }) => React.cloneElement(image, { className: styles.hiddenImage }))}
       </div>
     );
   }
