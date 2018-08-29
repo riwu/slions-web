@@ -1,5 +1,5 @@
 import React from 'react';
-import { FeedbackPageImage } from '../../assets/images';
+import { FeedbackPageImage, FeedbackLoopImage } from '../../assets/images';
 import styles from './index.module.css';
 
 const InstantFeedback = () => (
@@ -17,6 +17,8 @@ const InstantFeedback = () => (
         Students are now enabled to learn anywhere, anytime.
       </h3>
       <br />
+      <br />
+      <FeedbackLoopImage />
     </div>
   </div>
 );

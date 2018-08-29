@@ -23,6 +23,9 @@ import FeaturesPageWEBP from './lesson.webp';
 import ClassroomPagePNG from './web_app.png';
 import ClassroomPageWEBP from './web_app.webp';
 
+import FeedbackLoopPNG from './feedback_loop.png';
+import FeedbackLoopWEBP from './feedback_loop.webp';
+
 const Image = props => (
   <picture className={props.className}>
     <source srcSet={props.webp} type="image/webp" />
@@ -56,3 +59,8 @@ export const FeaturesPageImage = props => (
 export const ClassroomPageImage = props => (
   <Image src={ClassroomPagePNG} webp={ClassroomPageWEBP} {...props} />
 );
+
+export const FeedbackLoopImage = props => (
+  <Image src={FeedbackLoopPNG} webp={FeedbackLoopWEBP} {...props} />
+);
+
