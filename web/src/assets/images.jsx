@@ -8,23 +8,32 @@ import GooglePlayWEBP from './google_play.webp';
 import AppLogoPNG from './slions_logo.png';
 import AppLogoWEBP from './slions_logo.webp';
 
-import AppLinkPagePNG from './song_select.png';
-import AppLinkPageWEBP from './song_select.webp';
+import SongSelectPNG from './song_select.png';
+import SongSelectWEBP from './song_select.webp';
 
-import FeedbackPagePNG from './review.png';
-import FeedbackPageWEBP from './review.webp';
+import ReviewPNG from './review.png';
+import ReviewWEBP from './review.webp';
 
-import ExpertsPagePNG from './collage.png';
-import ExpertsPageWEBP from './collage.webp';
+import CollagePNG from './collage.png';
+import CollageWEBP from './collage.webp';
 
-import FeaturesPagePNG from './lesson.png';
-import FeaturesPageWEBP from './lesson.webp';
-
-import ClassroomPagePNG from './web_app.png';
-import ClassroomPageWEBP from './web_app.webp';
+import ClassroomPNG from './web_app.png';
+import ClassroomWEBP from './web_app.webp';
 
 import FeedbackLoopPNG from './feedback_loop.png';
 import FeedbackLoopWEBP from './feedback_loop.webp';
+
+import LessonPNG from './lesson.png';
+import LessonWEBP from './lesson.webp';
+
+import LanguagesPNG from './languages.png';
+import LanguagesWEBP from './languages.webp';
+
+import ProgressPNG from './progress.png';
+import ProgressWEBP from './progress.webp';
+
+import KaraokePNG from './karaoke.png';
+import KaraokeWEBP from './karaoke.webp';
 
 const Image = props => (
   <picture className={props.className}>
@@ -40,27 +49,24 @@ export const GooglePlayLogo = props => (
 
 export const AppLogo = props => <Image src={AppLogoPNG} webp={AppLogoWEBP} {...props} />;
 
-export const AppLinkPageImage = props => (
-  <Image src={AppLinkPagePNG} webp={AppLinkPageWEBP} {...props} />
+export const SongSelectImage = props => (
+  <Image src={SongSelectPNG} webp={SongSelectWEBP} {...props} />
 );
 
-export const FeedbackPageImage = props => (
-  <Image src={FeedbackPagePNG} webp={FeedbackPageWEBP} {...props} />
-);
+export const ReviewImage = props => <Image src={ReviewPNG} webp={ReviewWEBP} {...props} />;
 
-export const ExpertsPageImage = props => (
-  <Image src={ExpertsPagePNG} webp={ExpertsPageWEBP} {...props} />
-);
+export const CollageImage = props => <Image src={CollagePNG} webp={CollageWEBP} {...props} />;
 
-export const FeaturesPageImage = props => (
-  <Image src={FeaturesPagePNG} webp={FeaturesPageWEBP} {...props} />
-);
+export const LessonImage = props => <Image src={LessonPNG} webp={LessonWEBP} {...props} />;
 
-export const ClassroomPageImage = props => (
-  <Image src={ClassroomPagePNG} webp={ClassroomPageWEBP} {...props} />
-);
+export const ClassroomImage = props => <Image src={ClassroomPNG} webp={ClassroomWEBP} {...props} />;
 
 export const FeedbackLoopImage = props => (
   <Image src={FeedbackLoopPNG} webp={FeedbackLoopWEBP} {...props} />
 );
 
+export const LanguagesImage = props => <Image src={LanguagesPNG} webp={LanguagesWEBP} {...props} />;
+
+export const ProgressImage = props => <Image src={ProgressPNG} webp={ProgressWEBP} {...props} />;
+
+export const KaraokeImage = props => <Image src={KaraokePNG} webp={KaraokeWEBP} {...props} />;

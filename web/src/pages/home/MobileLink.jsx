@@ -1,6 +1,6 @@
 import React from 'react';
 import Anchor from '../../components/Anchor';
-import { AppStoreLogo, GooglePlayLogo, AppLinkPageImage } from '../../assets/images';
+import { AppStoreLogo, GooglePlayLogo, SongSelectImage } from '../../assets/images';
 import styles from './index.module.css';
 
 const MobileLink = () => (
@@ -24,7 +24,7 @@ const MobileLink = () => (
       </Anchor>
     </div>
 
-    <AppLinkPageImage />
+    <SongSelectImage className={styles.rightImage} />
   </div>
 );
 

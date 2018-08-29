@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExpertsPageImage } from '../../assets/images';
+import { CollageImage } from '../../assets/images';
 import styles from './index.module.css';
 
 const Experts = () => (
@@ -18,7 +18,7 @@ const Experts = () => (
       <br />
     </div>
 
-    <ExpertsPageImage />
+    <CollageImage />
   </div>
 );
 

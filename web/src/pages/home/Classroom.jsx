@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClassroomPageImage } from '../../assets/images';
+import { ClassroomImage } from '../../assets/images';
 import styles from './index.module.css';
 import Login from '../../components/Login';
 
@@ -16,7 +16,7 @@ const Classroom = () => (
       <Login />
     </div>
 
-    <ClassroomPageImage />
+    <ClassroomImage />
   </div>
 );
 

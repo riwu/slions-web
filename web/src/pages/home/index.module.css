@@ -34,3 +34,11 @@
 .description {
   width: 300px;
 }
+
+.rightImage {
+  transform: rotate(10deg);
+}
+
+.leftImage {
+  transform: rotate(-10deg);
+}

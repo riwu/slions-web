@@ -1,10 +1,10 @@
 import React from 'react';
-import { FeedbackPageImage, FeedbackLoopImage } from '../../assets/images';
+import { ReviewImage, FeedbackLoopImage } from '../../assets/images';
 import styles from './index.module.css';
 
 const InstantFeedback = () => (
   <div className={styles.pageContainer}>
-    <FeedbackPageImage className={styles.leftContainer} />
+    <ReviewImage className={`${styles.leftContainer} ${styles.leftImage}`} />
 
     <div>
       <h1 className={styles.title}>Instant feedback loop</h1>
