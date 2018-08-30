@@ -10,11 +10,11 @@
   width: 300px;
   display: flex;
   align-items: center;
-  margin: 50px;
+  margin-bottom: 40px;
 }
 
 .feature > * {
-  margin: 15px;
+  margin: 10px;
 }
 
 .icon {
