@@ -17,6 +17,10 @@
   margin: 10px;
 }
 
+.image {
+  margin: 0 20px;
+}
+
 .icon {
   color: white;
   font-size: 30px;

@@ -36,39 +36,39 @@ const features = [
     title: 'Discover Songs',
     description: 'Latest popular songs curated and translated to maximise your learning.',
     icon: 'search',
-    image: <SongSelectImage />,
+    image: SongSelectImage,
   },
   {
     title: 'Multiple Languages',
     description:
       'We intend  to support multiple languages. However, we are starting with Chinese and English for our beta.',
     icon: 'global',
-    image: <LanguagesImage />,
+    image: LanguagesImage,
   },
   {
     title: 'My Progress',
     description: 'Easily track your progress and make sure that you are improving!',
     icon: 'line-chart',
-    image: <ProgressImage />,
+    image: ProgressImage,
   },
   {
     title: 'Mini Lessons',
     description:
       'Learn vocabulary, sentence structures and pronounciation through our mini series.',
     icon: 'book',
-    image: <LessonImage />,
+    image: LessonImage,
   },
   {
     title: 'Instant Feedback',
     description: 'Receive feedback instantly after singing - helps to accelerate learning.',
     icon: 'form',
-    image: <ReviewImage />,
+    image: ReviewImage,
   },
   {
     title: 'Karaoke',
     description: 'Fun and engaging songs to help you make your learning experience enjoyable.',
     icon: 'sound',
-    image: <KaraokeImage />,
+    image: KaraokeImage,
   },
 ];
 
@@ -96,6 +96,7 @@ class Features extends React.Component {
   }
   render() {
     const mid = features.length / 2;
+    const { image: Image } = features[this.state.selected];
     return (
       <div>
         <h1 className={`${commonStyles.title} ${styles.title}`}>Features</h1>
@@ -112,7 +113,7 @@ class Features extends React.Component {
               ))}
           </div>
 
-          {features[this.state.selected].image}
+          <Image className={styles.image} />
 
           <div>
             {features
@@ -129,7 +130,7 @@ class Features extends React.Component {
         </div>
 
         {/* preload images to prevent flicking when animating through unloaded images */}
-        {features.map(({ image }) => React.cloneElement(image, { className: styles.hiddenImage }))}
+        {features.map(({ image: HiddenImage }) => <HiddenImage className={styles.hiddenImage} />)}
       </div>
     );
   }
