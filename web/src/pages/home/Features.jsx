@@ -101,7 +101,7 @@ class Features extends React.Component {
       <div>
         <h1 className={`${commonStyles.title} ${styles.title}`}>Features</h1>
         <div className={`${commonStyles.pageContainer} ${styles.featureContainer}`}>
-          <div>
+          <span>
             {features
               .slice(0, mid)
               .map((data, i) => (
@@ -111,11 +111,11 @@ class Features extends React.Component {
                   selected={this.state.selected === i}
                 />
               ))}
-          </div>
+          </span>
 
           <Image className={styles.image} />
 
-          <div>
+          <span>
             {features
               .slice(mid)
               .map((data, i) => (
@@ -126,7 +126,7 @@ class Features extends React.Component {
                   selected={this.state.selected === mid + i}
                 />
               ))}
-          </div>
+          </span>
         </div>
 
         {/* preload images to prevent flicking when animating through unloaded images */}

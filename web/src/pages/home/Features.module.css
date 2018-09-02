@@ -6,6 +6,12 @@
   justify-content: center;
 }
 
+@media (max-width: 1000px) {
+  .featureContainer {
+    flex-direction: column;
+  }
+}
+
 .feature {
   width: 300px;
   display: flex;
