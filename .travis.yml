@@ -6,5 +6,3 @@ cache:
   - web/node_modules
 before_install:
   - cd web
-notifications:
-  email: false
