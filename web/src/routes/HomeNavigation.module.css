@@ -1,0 +1,25 @@
+.container {
+  padding: 0 40px;
+}
+
+.rightNav {
+  float: right;
+  cursor: pointer;
+  display: flex;
+}
+
+.navMargin {
+  margin-left: 20px;
+}
+
+.header {
+  display: inline-flex;
+  align-items: center;
+}
+
+.title {
+  color: black;
+  font-weight: 800;
+  font-size: 20px;
+  margin-left: 5px;
+}

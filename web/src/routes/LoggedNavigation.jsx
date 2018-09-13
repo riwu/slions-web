@@ -3,15 +3,17 @@ import { connect } from 'react-redux';
 import { Menu, Dropdown, Icon } from 'antd';
 import { withRouter, Link } from 'react-router-dom';
 import { logOut } from '../actions';
-import styles from './Navigation.module.css';
+import styles from './LoggedNavigation.module.css';
+import { LogoWhite } from '../assets/images';
 
 const LoggedNavigation = props => (
-  <Menu
-    theme="dark"
-    mode="horizontal"
-    defaultSelectedKeys={[window.location.pathname]}
-    className={styles.container}
-  >
+  <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[window.location.pathname]}>
+    <Menu.Item>
+      <Link to="/">
+        <LogoWhite />
+      </Link>
+    </Menu.Item>
+
     {[
       {
         link: 'classes',

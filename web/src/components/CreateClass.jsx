@@ -8,7 +8,7 @@ const CreateClass = props => (
   <ClassForm label="Create new class" okText="Create" onOk={props.createClass}>
     {toggleModal => (
       <Button className={props.className} type="primary" onClick={() => toggleModal()}>
-        Create new class
+        Create Class
       </Button>
     )}
   </ClassForm>

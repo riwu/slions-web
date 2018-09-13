@@ -5,8 +5,11 @@ import AppStoreWEBP from './app_store.webp';
 import GooglePlayPNG from './google_play.png';
 import GooglePlayWEBP from './google_play.webp';
 
-import AppLogoPNG from './slions_logo.png';
-import AppLogoWEBP from './slions_logo.webp';
+import LogoPurplePNG from './logo_purple.png';
+import LogoPurpleWEBP from './logo_purple.webp';
+
+import LogoWhitePNG from './logo_white.png';
+import LogoWhiteWEBP from './logo_white.webp';
 
 import SongSelectPNG from './song_select.png';
 import SongSelectWEBP from './song_select.webp';
@@ -47,7 +50,8 @@ export const GooglePlayLogo = props => (
   <Image src={GooglePlayPNG} webp={GooglePlayWEBP} {...props} />
 );
 
-export const AppLogo = props => <Image src={AppLogoPNG} webp={AppLogoWEBP} {...props} />;
+export const LogoPurple = props => <Image src={LogoPurplePNG} webp={LogoPurpleWEBP} {...props} />;
+export const LogoWhite = props => <Image src={LogoWhitePNG} webp={LogoWhiteWEBP} {...props} />;
 
 export const SongSelectImage = props => (
   <Image src={SongSelectPNG} webp={SongSelectWEBP} {...props} />

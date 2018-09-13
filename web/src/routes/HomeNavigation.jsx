@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Menu, Affix } from 'antd';
 import Anchor from '../components/Anchor';
 import { logOut } from '../actions';
-import { AppLogo } from '../assets/images';
-import styles from './Navigation.module.css';
+import { LogoPurple } from '../assets/images';
+import styles from './HomeNavigation.module.css';
 import Login from '../components/Login';
 
 const HomeNavigation = () => (
@@ -14,8 +14,10 @@ const HomeNavigation = () => (
       defaultSelectedKeys={[window.location.pathname]}
       className={styles.container}
     >
-      <AppLogo />
-
+      <span className={styles.header}>
+        <LogoPurple />
+        <span className={styles.title}>SLIONS</span>
+      </span>
       <span className={styles.rightNav}>
         <Anchor href="https://wangriwu.com/Contact">Contact</Anchor>
         <div className={styles.navMargin}>

@@ -1,0 +1,6 @@
+.rightNav {
+  float: right;
+  cursor: pointer;
+  display: flex;
+  margin-right: 40px;
+}
