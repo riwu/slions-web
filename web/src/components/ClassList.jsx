@@ -77,7 +77,7 @@ const ClassList = props => (
               okText="Yes"
               onClick={e => e.stopPropagation()}
             >
-              <a>Delete</a>
+              <a className={styles.delete}>Delete</a>
             </Popconfirm>
           ),
           /* eslint-enable */

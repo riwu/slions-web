@@ -1,3 +1,7 @@
 .row {
   cursor: pointer;
 }
+
+.delete {
+  color: #dc3169;
+}

@@ -80,7 +80,7 @@ class Students extends React.Component {
                     okText="Yes"
                     onClick={e => e.stopPropagation()}
                   >
-                    <a>Remove</a>
+                    <a className={styles.delete}>Remove</a>
                   </Popconfirm>
                   <Divider type="vertical" />
                   <Popconfirm

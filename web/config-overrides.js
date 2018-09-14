@@ -12,6 +12,8 @@ module.exports = function override(config, env) {
     modifyVars: {
       '@primary-color': '#6c6ed7',
       '@menu-dark-bg': '#6c6ed7',
+      '@table-header-bg': '#ebebfe',
+      '@table-header-sort-bg': '#d3d3fd',
     },
     javascriptEnabled: true,
   })(config, env);
