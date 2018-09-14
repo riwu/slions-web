@@ -2,7 +2,13 @@ import { notification } from 'antd';
 import * as api from './api';
 import * as types from './types';
 
-const displayError = (e, title) => notification.error({ message: title, description: e.message });
+const displayError = (e, title) => {
+  if (((e || {}).response || {}).status === 401) {
+    // error already shown through handleSessionExpired
+    return;
+  }
+  notification.error({ message: title, description: e.message });
+};
 
 export const getClasses = () => dispatch =>
   api
