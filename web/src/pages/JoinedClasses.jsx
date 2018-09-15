@@ -5,6 +5,7 @@ import moment from 'moment';
 import { getJoinedClasses, leaveClass } from '../actions';
 import formatDate from '../util/formatDate';
 import styles from './Classes.module.css';
+import classListStyles from '../components/ClassList.module.css';
 
 class JoinedClasses extends React.Component {
   componentDidMount() {
@@ -58,7 +59,7 @@ class JoinedClasses extends React.Component {
                     }
                     okText="Yes"
                   >
-                    <a>Leave</a>
+                    <a className={classListStyles.delete}>Leave</a>
                   </Popconfirm>
                 ),
                 /* eslint-enable */

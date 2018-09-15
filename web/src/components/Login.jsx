@@ -73,7 +73,9 @@ class Login extends React.Component {
           <Form className={props.className}>
             <Form.Item label="Username">
               {getFieldDecorator('username', {
-                rules: [{ required: true, message: 'Please input your username!' }],
+                rules: [
+                  { required: true, whitespace: true, message: 'Please input your username!' },
+                ],
               })(<Input
                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 placeholder="Enter your username"
@@ -81,7 +83,9 @@ class Login extends React.Component {
             </Form.Item>
             <Form.Item label="Password">
               {getFieldDecorator('password', {
-                rules: [{ required: true, message: 'Please input your password!' }],
+                rules: [
+                  { required: true, whitespace: true, message: 'Please input your password!' },
+                ],
               })(<Input
                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 type="password"

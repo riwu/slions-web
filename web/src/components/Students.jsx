@@ -42,6 +42,11 @@ class Students extends React.Component {
               sorter: (a, b) => a.username.localeCompare(b.username),
             },
             {
+              title: 'Display name',
+              dataIndex: 'displayName',
+              sorter: (a, b) => a.displayName.localeCompare(b.displayName),
+            },
+            {
               title: 'Email',
               dataIndex: 'email',
               sorter: (a, b) => a.email.localeCompare(b.email),
