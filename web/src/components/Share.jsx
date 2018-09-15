@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import copy from 'copy-text-to-clipboard';
 
 const Share = (props) => {
-  const link = `${window.location.origin}/class/${props.id}/join`;
+  const link = `${window.location.origin}/classes/${props.id}/join`;
   return (
     <h3>
       <div>

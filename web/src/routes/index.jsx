@@ -15,14 +15,14 @@ export const history = createBrowserHistory();
 const Routes = () => (
   <Router history={history}>
     <Switch>
-      <Route path="/class*">
+      <Route path="/classes">
         <React.Fragment>
           <LoggedNavigation />
           <Switch>
-            <PrivateRoute exact path="/class/:id/join" component={JoinClass} />
+            <PrivateRoute exact path="/classes/:id/join" component={JoinClass} />
             <PrivateRoute exact path="/classes/joined" component={JoinedClasses} />
             <PrivateRoute exact path="/classes" component={Classes} />
-            <PrivateRoute exact path="/class/:id" component={Class} />
+            <PrivateRoute exact path="/classes/:id" component={Class} />
           </Switch>
         </React.Fragment>
       </Route>

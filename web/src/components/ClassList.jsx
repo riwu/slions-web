@@ -11,7 +11,7 @@ const ClassList = props => (
     <Table
       rowClassName={styles.row}
       onRow={row => ({
-        onClick: () => props.history.push(`/class/${row.key}`),
+        onClick: () => props.history.push(`/classes/${row.key}`),
       })}
       pagination={{ hideOnSinglePage: true }}
       dataSource={Object.entries(props.classes).map(([id, classInfo]) => ({
