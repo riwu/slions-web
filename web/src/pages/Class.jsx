@@ -38,17 +38,17 @@ const Class = (props) => {
             </Row>
           ))}
         </Card>
-        <Card title="Teacher List" className={styles.teacherList}>
-          <Teachers teachers={props.class.teachers} classId={classId} />
-        </Card>
       </div>
-      <div className={styles.studentList}>
+      <div className={styles.userList}>
         <Card title="Student List">
           <Students
             students={classInfo.students}
             language={props.class.language}
             classId={classId}
           />
+        </Card>
+        <Card title="Teacher List" className={styles.teacherList}>
+          <Teachers teachers={props.class.teachers} classId={classId} />
         </Card>
       </div>
     </div>
