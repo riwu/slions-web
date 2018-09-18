@@ -1,7 +1,7 @@
 import axios from 'axios';
 import handleSessionExpired from '../util/handleSessionExpired';
 
-axios.defaults.baseURL = `${window.location.origin}/api/`;
+axios.defaults.baseURL = '/api/';
 
 const [get, post, patch, del] = ['get', 'post', 'patch', 'delete'].map(method => (path, data) =>
   axios({
@@ -25,7 +25,8 @@ export const getUser = () => get('/users/me');
 export const deleteSession = () => del('sessions/me');
 export const getClasses = () => get('classes');
 export const getJoinedClasses = () => get('classes/joined');
-export const getSongs = language => get(`songs?native=${language}&second=${language}`);
+export const getSongs = language =>
+  get(`songs?native=${language}&second=${language}&sections=true`);
 export const createClass = classInfo => post('classes', classInfo);
 export const updateClass = (id, classInfo) => patch(`classes/${id}`, classInfo);
 export const deleteClass = id => del(`classes/${id}`);
