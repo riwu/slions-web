@@ -46,7 +46,7 @@ export const createClass = data => dispatch =>
     dispatch({
       type: types.SET_CLASS,
       id,
-      data: { ...data, inserted: new Date() },
+      data: { ...data, teachers: {}, inserted: new Date() },
     }));
 
 export const updateClass = ({ id, ...data }) => (dispatch, getState) => {
