@@ -12,7 +12,6 @@ const SectionDetails = props => (
       const timestamp = Number(timestampStr);
       return {
         key: timestamp,
-        time: moment(Number(timestamp)).format('DD MMM YY, hh:mm a'),
         score: recording.score,
         lines: recording.lines,
         recordingBaseURL: props.recordingBaseURL,
@@ -21,8 +20,9 @@ const SectionDetails = props => (
     columns={[
       {
         title: 'Time',
-        dataIndex: 'time',
+        dataIndex: 'key',
         sorter: (a, b) => a.key - b.key,
+        render: timestamp => moment(Number(timestamp)).format('DD MMM YY, hh:mm a'),
       },
       {
         title: 'Score',

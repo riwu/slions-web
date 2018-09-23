@@ -13,6 +13,7 @@ const RecordingDetails = props => (
       {
         title: 'Line',
         dataIndex: 'key',
+        render: (text, none, index) => index + 1, // eslint-disable-line no-unused-vars
       },
       {
         title: 'Score',

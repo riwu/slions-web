@@ -18,12 +18,8 @@ class JoinedClasses extends React.Component {
         <Card>
           <Table
             pagination={{ hideOnSinglePage: true }}
-            dataSource={props.joinedClasses.map(info => ({
-              ...info,
-              key: info.id,
-              insertedText: formatDate(info.inserted),
-              languageLabel: props.languages[info.language],
-            }))}
+            dataSource={props.joinedClasses}
+            rowKey="id"
             columns={[
               {
                 title: 'Title',
@@ -32,14 +28,16 @@ class JoinedClasses extends React.Component {
               },
               {
                 title: 'Language',
-                dataIndex: 'languageLabel',
+                dataIndex: 'language',
                 sorter: (a, b) => a.languageLabel.localeCompare(b.languageLabel),
+                render: language => props.languages[language],
               },
               {
                 title: 'Created On',
-                dataIndex: 'insertedText',
+                dataIndex: 'inserted',
                 defaultSortOrder: 'descend',
                 sorter: (a, b) => moment(a.inserted) - moment(b.inserted),
+                render: inserted => formatDate(inserted),
               },
               {
                 title: 'Action',
