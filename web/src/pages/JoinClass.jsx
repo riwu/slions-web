@@ -14,7 +14,7 @@ class JoinClass extends React.Component {
     getClass(id)
       .then(info => this.setState(info))
       .catch((e) => {
-        if (e.response.status === 404) {
+        if ((e.response || {}).status === 404) {
           this.setState({ notFound: true });
         }
       });
@@ -48,7 +48,7 @@ class JoinClass extends React.Component {
                     props.history.push('/classes/joined');
                   })
                   .catch((e) => {
-                    if (e.response.status === 409) {
+                    if ((e.response || {}).status === 409) {
                       message.warn(`You have already joined the class ${this.state.title}`);
                       props.history.push('/classes');
                       return;

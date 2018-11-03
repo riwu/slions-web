@@ -19,8 +19,8 @@ module.exports = function override(config, env) {
   })(config, env);
 
   config =
-    env === 'production'
-      ? injectBabelPlugin(['transform-remove-console'], config)
-      : rewireReactHotLoader(config, env);
+    env === 'development'
+      ? rewireReactHotLoader(config, env)
+      : injectBabelPlugin(['transform-remove-console'], config);
   return config;
 };
