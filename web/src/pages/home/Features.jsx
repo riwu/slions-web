@@ -107,6 +107,7 @@ class Features extends React.Component {
               .map((data, i) => (
                 <Feature
                   {...data}
+                  key={data.title}
                   onClick={() => this.handleSelect(i)}
                   selected={this.state.selected === i}
                 />
@@ -121,6 +122,7 @@ class Features extends React.Component {
               .map((data, i) => (
                 <Feature
                   {...data}
+                  key={data.title}
                   iconLeft
                   onClick={() => this.handleSelect(mid + i)}
                   selected={this.state.selected === mid + i}
@@ -130,7 +132,9 @@ class Features extends React.Component {
         </div>
 
         {/* preload images to prevent flicking when animating through unloaded images */}
-        {features.map(({ image: HiddenImage }) => <HiddenImage className={styles.hiddenImage} />)}
+        {features.map(({ image: HiddenImage, title }) => (
+          <HiddenImage key={title} className={styles.hiddenImage} />
+        ))}
       </div>
     );
   }

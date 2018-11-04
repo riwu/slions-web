@@ -9,12 +9,14 @@ const handleSessionExpired = (e) => {
       user: { username },
     } = store.getState();
     if (username) {
-      history.push('/', { redirected: true });
-      notification.warn({
-        message: 'Session expired',
-        description: 'Please re-login.',
-        placement: 'topLeft',
-      });
+      if (window.location.pathname !== '/') {
+        history.push('/', { redirected: true });
+        notification.warn({
+          message: 'Session expired',
+          description: 'Please re-login.',
+          placement: 'topLeft',
+        });
+      }
       store.dispatch(clearUserData());
     }
   }
