@@ -15,8 +15,10 @@ const Classes = props => (
           <span className={styles.description}>for slions</span>
         </span>
       </span>
-      <CreateClass />
-      <UpdateVideoSize />
+      <span>
+        <CreateClass />
+        <UpdateVideoSize className={styles.updateVideoSize} />
+      </span>
     </div>
     <ClassList history={props.history} />
   </div>

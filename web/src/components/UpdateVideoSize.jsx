@@ -7,6 +7,7 @@ const UpdateVideoSize = (props) => {
   if (!props.isAdmin) return null;
   return (
     <Button
+      className={props.className}
       type="primary"
       onClick={() => {
         message.loading('Updating video size...', 0);

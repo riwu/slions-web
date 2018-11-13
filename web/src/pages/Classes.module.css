@@ -23,3 +23,7 @@
   display: flex;
   justify-content: space-between;
 }
+
+.updateVideoSize {
+  margin-left: 10px;
+}
