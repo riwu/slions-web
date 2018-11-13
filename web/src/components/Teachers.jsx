@@ -9,10 +9,6 @@ import styles from './ClassList.module.css';
 
 const Teachers = props => (
   <Table
-    rowClassName={styles.row}
-    onRow={student => ({
-      onClick: () => this.setState({ student, visible: true }),
-    })}
     dataSource={Object.entries(props.teachers).map(([id, teacher]) => ({
       key: id,
       ...teacher,
