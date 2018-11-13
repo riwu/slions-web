@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Checkbox } from 'antd';
+import { Checkbox } from 'antd';
+import Table from './Table';
 
 const getUpdatedSongs = (prevSongs, selectedSongId, checked, newValue) => {
   const { [selectedSongId]: _, ...songs } = prevSongs;
@@ -9,7 +10,6 @@ const getUpdatedSongs = (prevSongs, selectedSongId, checked, newValue) => {
 
 const PickSong = props => (
   <Table
-    pagination={{ hideOnSinglePage: true }}
     dataSource={Object.entries(props.songsList).map(([id, song]) => ({
       key: id,
       name: song.translatedTitle,
@@ -18,6 +18,7 @@ const PickSong = props => (
       {
         title: 'Name',
         dataIndex: 'name',
+        align: 'left',
       },
       {
         title: 'Mandatory',

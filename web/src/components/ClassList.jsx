@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Card, Popconfirm, message, notification } from 'antd';
+import { Card, Popconfirm, message, notification } from 'antd';
 import moment from 'moment';
+import Table from './Table';
 import computeScore from '../util/computeScore';
 import { deleteClass } from '../actions';
 import styles from './ClassList.module.css';
@@ -13,7 +14,6 @@ const ClassList = props => (
       onRow={row => ({
         onClick: () => props.history.push(`/classes/${row.key}`),
       })}
-      pagination={{ hideOnSinglePage: true }}
       dataSource={Object.entries(props.classes).map(([id, classInfo]) => ({
         ...classInfo,
         key: id,
@@ -42,19 +42,24 @@ const ClassList = props => (
           sorter: (a, b) => a.studentsCount - b.studentsCount,
         },
         {
-          title: 'Average Score',
-          dataIndex: 'avgScore',
-          sorter: (a, b) => a.avgScore - b.avgScore,
-        },
-        {
-          title: 'Highest Score',
-          dataIndex: 'highestScore',
-          sorter: (a, b) => a.highestScore - b.highestScore,
-        },
-        {
-          title: 'Lowest Score',
-          dataIndex: 'lowestScore',
-          sorter: (a, b) => a.lowestScore - b.lowestScore,
+          title: 'Score',
+          children: [
+            {
+              title: 'Average',
+              dataIndex: 'avgScore',
+              sorter: (a, b) => a.avgScore - b.avgScore,
+            },
+            {
+              title: 'Highest',
+              dataIndex: 'highestScore',
+              sorter: (a, b) => a.highestScore - b.highestScore,
+            },
+            {
+              title: 'Lowest',
+              dataIndex: 'lowestScore',
+              sorter: (a, b) => a.lowestScore - b.lowestScore,
+            },
+          ],
         },
         {
           title: 'Action',
@@ -82,10 +87,7 @@ const ClassList = props => (
           ),
           /* eslint-enable */
         },
-      ].map(obj => ({
-        ...obj,
-        align: 'center',
-      }))}
+      ]}
     />
   </Card>
 );

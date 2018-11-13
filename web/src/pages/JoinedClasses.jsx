@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Popconfirm, notification, message, Card } from 'antd';
+import { Popconfirm, notification, message, Card } from 'antd';
 import moment from 'moment';
+import Table from '../components/Table';
 import { getJoinedClasses, leaveClass } from '../actions';
 import formatDate from '../util/formatDate';
 import styles from './Classes.module.css';
@@ -17,7 +18,6 @@ class JoinedClasses extends React.Component {
       <div className={styles.container}>
         <Card>
           <Table
-            pagination={{ hideOnSinglePage: true }}
             dataSource={props.joinedClasses}
             rowKey="id"
             columns={[
@@ -62,10 +62,7 @@ class JoinedClasses extends React.Component {
                 ),
                 /* eslint-enable */
               },
-            ].map(obj => ({
-              ...obj,
-              align: 'center',
-            }))}
+            ]}
           />
         </Card>
       </div>

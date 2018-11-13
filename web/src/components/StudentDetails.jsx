@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'antd';
+import Table from './Table';
 import SongDetails from './SongDetails';
 
 const StudentDetails = props => (
   <Table
     expandRowByClick
     expandedRowRender={SongDetails}
-    pagination={{ hideOnSinglePage: true }}
     dataSource={Object.entries(props.scores).map(([id, song]) => {
       const songInfo = (props.songs || {})[id] || {};
       return {
@@ -31,10 +30,7 @@ const StudentDetails = props => (
         defaultSortOrder: 'ascend',
         sorter: (a, b) => a.score - b.score,
       },
-    ].map(obj => ({
-      ...obj,
-      align: 'center',
-    }))}
+    ]}
   />
 );
 

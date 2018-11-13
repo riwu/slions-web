@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Popconfirm, notification, message } from 'antd';
+import { Popconfirm, notification, message } from 'antd';
 import moment from 'moment';
+import Table from './Table';
 import { removeFromClass } from '../actions';
 import formatDate from '../util/formatDate';
 import styles from './ClassList.module.css';
@@ -16,7 +17,6 @@ const Teachers = props => (
       key: id,
       ...teacher,
     }))}
-    pagination={{ hideOnSinglePage: true }}
     columns={[
       {
         title: 'Username',
@@ -66,10 +66,7 @@ const Teachers = props => (
         ),
         /* eslint-enable */
       },
-    ].map(obj => ({
-      ...obj,
-      align: 'center',
-    }))}
+    ]}
   />
 );
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Popconfirm, notification, message, Modal, Divider } from 'antd';
+import { Popconfirm, notification, message, Modal, Divider } from 'antd';
 import moment from 'moment';
+import Table from './Table';
 import StudentDetails from './StudentDetails';
 import { removeFromClass, promoteToTeacher } from '../actions';
 import formatDate from '../util/formatDate';
@@ -31,7 +32,6 @@ class Students extends React.Component {
             onClick: () => this.setState({ student, visible: true }),
           })}
           dataSource={props.students}
-          pagination={{ hideOnSinglePage: true }}
           columns={[
             {
               title: 'Username',
@@ -110,10 +110,7 @@ class Students extends React.Component {
               ),
               /* eslint-enable */
             },
-          ].map(obj => ({
-            ...obj,
-            align: 'center',
-          }))}
+          ]}
         />
       </React.Fragment>
     );
