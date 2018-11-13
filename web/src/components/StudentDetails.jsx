@@ -6,7 +6,9 @@ import SongDetails from './SongDetails';
 const StudentDetails = props => (
   <Table
     expandRowByClick
-    expandedRowRender={SongDetails}
+    expandedRowRender={rowProps => (
+      <SongDetails {...rowProps} onModalCloseCallback={props.onModalCloseCallback} />
+    )}
     dataSource={Object.entries(props.scores).map(([id, song]) => {
       const songInfo = (props.songs || {})[id] || {};
       return {

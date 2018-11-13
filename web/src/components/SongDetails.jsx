@@ -5,7 +5,9 @@ import SectionDetails from './SectionDetails';
 const SongDetails = props => (
   <Table
     expandRowByClick
-    expandedRowRender={SectionDetails}
+    expandedRowRender={rowProps => (
+      <SectionDetails {...rowProps} onModalCloseCallback={props.onModalCloseCallback} />
+    )}
     dataSource={Object.entries(props.sections).map(([id, section]) => ({
       key: id,
       score: section.highest,

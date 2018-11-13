@@ -6,22 +6,24 @@ import Table from './Table';
 const SectionDetails = props => (
   <Table
     expandRowByClick
-    expandedRowRender={RecordingDetails}
+    expandedRowRender={rowProps => (
+      <RecordingDetails {...rowProps} onModalCloseCallback={props.onModalCloseCallback} />
+    )}
     dataSource={Object.entries(props.section).map(([timestampStr, recording]) => {
       const timestamp = Number(timestampStr);
       return {
-        key: timestamp,
-        score: recording.score,
-        lines: recording.lines,
+        timestamp,
         recordingBaseURL: props.recordingBaseURL,
+        ...recording,
       };
     })}
+    rowKey="timestamp"
     columns={[
       {
         title: 'Time',
-        dataIndex: 'key',
-        sorter: (a, b) => a.key - b.key,
-        render: timestamp => moment(Number(timestamp)).format('DD MMM YY, hh:mm a'),
+        dataIndex: 'timestamp',
+        sorter: (a, b) => a.timestamp - b.timestamp,
+        render: timestamp => moment(timestamp).format('DD MMM YY, hh:mm a'),
       },
       {
         title: 'Score',

@@ -20,11 +20,20 @@ class Students extends React.Component {
         <Modal
           title={this.state.student.username}
           visible={this.state.visible}
-          onCancel={() => this.setState({ visible: false })}
+          onCancel={() => {
+            this.setState({ visible: false });
+            if (this.onModalCloseCallback) this.onModalCloseCallback();
+          }}
           width="90%"
           footer={null}
         >
-          <StudentDetails {...this.state.student} language={props.language} />
+          <StudentDetails
+            {...this.state.student}
+            language={props.language}
+            onModalCloseCallback={(onModalCloseCallback) => {
+              this.onModalCloseCallback = onModalCloseCallback;
+            }}
+          />
         </Modal>
         <Table
           rowClassName={styles.row}
