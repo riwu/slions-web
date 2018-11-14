@@ -19,7 +19,9 @@ const HomeNavigation = () => (
         <span className={styles.title}>SLIONS</span>
       </span>
       <span className={styles.rightNav}>
-        <Anchor href="https://wangriwu.com/Contact">Contact</Anchor>
+        <Anchor href="https://wangriwu.com/Contact" rel="noopener">
+          Contact
+        </Anchor>
         <div className={styles.navMargin}>
           <Login />
         </div>
