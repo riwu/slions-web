@@ -21,8 +21,10 @@ class ClassForm extends React.Component {
   };
 
   getDefaultSongs(language) {
-    return Object.keys(this.props.songsList[language] || {}).reduce((acc, id) => {
-      acc[id] = true;
+    return Object.entries(this.props.songsList).reduce((acc, [id, song]) => {
+      if (song.language === language) {
+        acc[id] = true;
+      }
       return acc;
     }, {});
   }

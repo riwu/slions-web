@@ -4,6 +4,7 @@ import classes from './classes';
 import joinedClasses from './joinedClasses';
 import songs from './songs';
 import languages from './languages';
+import users from './users';
 
 const reducer = combineReducers({
   user,
@@ -11,6 +12,7 @@ const reducer = combineReducers({
   joinedClasses,
   songs,
   languages,
+  users,
 });
 
 export default reducer;

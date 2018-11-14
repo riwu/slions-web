@@ -10,7 +10,7 @@ const StudentDetails = props => (
       <SongDetails {...rowProps} onModalCloseCallback={props.onModalCloseCallback} />
     )}
     dataSource={Object.entries(props.scores).map(([id, song]) => {
-      const songInfo = (props.songs || {})[id] || {};
+      const songInfo = props.songs[id] || {};
       return {
         key: id,
         name: songInfo.translatedTitle,
@@ -36,4 +36,4 @@ const StudentDetails = props => (
   />
 );
 
-export default connect((state, props) => ({ songs: state.songs[props.language] }))(StudentDetails);
+export default connect(state => ({ songs: state.songs }))(StudentDetails);

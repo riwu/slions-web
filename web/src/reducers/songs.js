@@ -5,7 +5,10 @@ const songs = (state = {}, action) => {
     case SET_SONGS:
       return {
         ...state,
-        [action.language]: action.songs,
+        ...Object.entries(action.songs).reduce((acc, [id, song]) => {
+          acc[id] = { ...song, language: action.language };
+          return acc;
+        }, {}),
       };
     default:
       return state;

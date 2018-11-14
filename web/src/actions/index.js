@@ -146,3 +146,10 @@ export const logOut = () => (dispatch) => {
   });
   api.deleteSession();
 };
+
+export const getUsers = () => dispatch =>
+  api.getUsers().then(users =>
+    dispatch({
+      type: types.SET_USERS,
+      users,
+    }));

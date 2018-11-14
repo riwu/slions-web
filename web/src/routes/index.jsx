@@ -7,6 +7,7 @@ import Classes from '../pages/Classes';
 import Class from '../pages/Class';
 import JoinedClasses from '../pages/JoinedClasses';
 import JoinClass from '../pages/JoinClass';
+import Users from '../pages/Users';
 import LoggedNavigation from './LoggedNavigation';
 import HomeNavigation from './HomeNavigation';
 
@@ -15,7 +16,7 @@ export const history = createBrowserHistory();
 const Routes = () => (
   <Router history={history}>
     <Switch>
-      <Route path="/classes">
+      <Route path={['/classes', '/users']}>
         <React.Fragment>
           <LoggedNavigation />
           <Switch>
@@ -23,6 +24,7 @@ const Routes = () => (
             <PrivateRoute exact path="/classes/joined" component={JoinedClasses} />
             <PrivateRoute exact path="/classes" component={Classes} />
             <PrivateRoute exact path="/classes/:id" component={Class} />
+            <PrivateRoute exact path="/users" component={Users} />
           </Switch>
         </React.Fragment>
       </Route>

@@ -41,11 +41,7 @@ const Class = (props) => {
       </div>
       <div className={styles.userList}>
         <Card title="Student List">
-          <Students
-            students={classInfo.students}
-            language={props.class.language}
-            classId={classId}
-          />
+          <Students students={classInfo.students} classId={classId} />
         </Card>
         <Card title="Teacher List" className={styles.teacherList}>
           <Teachers teachers={props.class.teachers} classId={classId} />

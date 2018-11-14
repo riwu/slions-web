@@ -10,10 +10,12 @@ const getUpdatedSongs = (prevSongs, selectedSongId, checked, newValue) => {
 
 const PickSong = props => (
   <Table
-    dataSource={Object.entries(props.songsList).map(([id, song]) => ({
-      key: id,
-      name: song.translatedTitle,
-    }))}
+    dataSource={Object.entries(props.songsList)
+      .filter(([, song]) => song.language === props.language)
+      .map(([id, song]) => ({
+        key: id,
+        name: song.translatedTitle,
+      }))}
     columns={[
       {
         title: 'Name',
@@ -50,4 +52,4 @@ PickSong.defaultProps = {
   songs: {},
 };
 
-export default connect((state, props) => ({ songsList: state.songs[props.language] }))(PickSong);
+export default connect(state => ({ songsList: state.songs }))(PickSong);

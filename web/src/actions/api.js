@@ -42,6 +42,8 @@ export const promoteToTeacher = (classId, studentId) =>
 export const getRecordings = (classId, songs) =>
   get(`classes/${classId}/recordings?songs=${songs}`);
 
+export const getUsers = () => get('/users');
+
 if (process.env.NODE_ENV !== 'development') {
   postActivity();
 }

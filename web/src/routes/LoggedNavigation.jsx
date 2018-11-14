@@ -23,11 +23,18 @@ const LoggedNavigation = props => (
         link: 'classes/joined',
         label: 'Joined classes',
       },
-    ].map(menu => (
-      <Menu.Item key={`/${menu.link}`}>
-        <Link to={`/${menu.link}`}>{menu.label}</Link>
-      </Menu.Item>
-    ))}
+    ]
+      .concat(props.isAdmin
+          ? {
+              link: 'users',
+              label: 'Users',
+            }
+          : [])
+      .map(menu => (
+        <Menu.Item key={`/${menu.link}`}>
+          <Link to={`/${menu.link}`}>{menu.label}</Link>
+        </Menu.Item>
+      ))}
 
     <div className={styles.rightNav}>
       <Dropdown
@@ -54,6 +61,6 @@ const LoggedNavigation = props => (
 );
 
 export default connect(
-  state => ({ username: state.user.username }),
+  state => ({ username: state.user.username, isAdmin: state.user.isAdmin }),
   { logOut },
 )(withRouter(LoggedNavigation));
