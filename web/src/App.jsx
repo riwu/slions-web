@@ -37,7 +37,7 @@ store.dispatch(getLanguages()).then((action) => {
   }
 });
 
-notification.config({ duration: 0 });
+notification.config({ duration: 10 });
 
 const App = () => (
   <Provider store={store}>

@@ -23,7 +23,7 @@ const HomeNavigation = () => (
           Contact
         </Anchor>
         <div className={styles.navMargin}>
-          <Login />
+          <Login showIfRedirected />
         </div>
       </span>
     </Menu>

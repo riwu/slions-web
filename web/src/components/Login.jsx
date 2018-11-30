@@ -6,7 +6,7 @@ import { login } from '../actions';
 
 class Login extends React.Component {
   state = {
-    modalVisible: (this.props.location.state || {}).redirected,
+    modalVisible: this.props.showIfRedirected && (this.props.location.state || {}).redirected,
   };
   onLogin() {
     const { props } = this;
