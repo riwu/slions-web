@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import PrivateRoute from './PrivateRoute';
 import Home from '../pages/home';
@@ -33,6 +33,7 @@ const Routes = () => (
         <React.Fragment>
           <HomeNavigation />
           <Route exact path="/" component={Home} />
+          <Redirect to="/" />
         </React.Fragment>
       </Route>
     </Switch>

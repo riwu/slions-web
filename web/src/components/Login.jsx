@@ -68,9 +68,8 @@ class Login extends React.Component {
           onOk={this.handleSubmit}
           okText="Sign In"
           onCancel={() => this.setState({ modalVisible: false })}
-          hideRequiredMark
         >
-          <Form className={props.className}>
+          <Form className={props.className} hideRequiredMark>
             <Form.Item label="Username">
               {getFieldDecorator('username', {
                 rules: [

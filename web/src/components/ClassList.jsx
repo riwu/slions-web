@@ -10,7 +10,6 @@ import styles from './ClassList.module.css';
 const ClassList = props => (
   <Card>
     <Table
-      rowClassName={styles.row}
       onRow={row => ({
         onClick: () => props.history.push(`/classes/${row.key}`),
       })}

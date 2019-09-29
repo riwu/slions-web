@@ -141,9 +141,7 @@ export const login = (username, password) => dispatch =>
 
 export const logOut = () => (dispatch) => {
   // log out even if session deletion fails
-  dispatch({
-    type: types.DELETE_USER_DATA,
-  });
+  dispatch(clearUserData());
   api.deleteSession();
 };
 

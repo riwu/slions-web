@@ -11,7 +11,6 @@ import reducer from './reducers';
 import Routes from './routes';
 import { getLanguages, getClasses, getSongs } from './actions';
 
-const middleware = [thunk];
 const config = {
   key: 'root',
   storage,
@@ -21,7 +20,7 @@ const config = {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = createStore(
   persistReducer(config, reducer),
-  composeEnhancers(applyMiddleware(...middleware)),
+  composeEnhancers(applyMiddleware(thunk)),
 );
 const persistor = persistStore(store, null, () => {
   // is logged in

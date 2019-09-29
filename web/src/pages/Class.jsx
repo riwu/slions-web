@@ -9,6 +9,10 @@ import styles from './Class.module.css';
 
 const Class = (props) => {
   const classId = props.match.params.id;
+  if (props.class === undefined) {
+    return `Class ID ${classId} not found!`;
+  }
+
   const classInfo = computeScore(props.class, props.languages);
   return (
     <div className={styles.container}>
@@ -49,10 +53,6 @@ const Class = (props) => {
       </div>
     </div>
   );
-};
-
-Class.defaultProps = {
-  class: {},
 };
 
 export default connect((state, ownProps) => ({

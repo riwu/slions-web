@@ -41,7 +41,6 @@ class Students extends React.Component {
           />
         </Modal>
         <Table
-          rowClassName={styles.row}
           onRow={student => ({
             onClick: () => this.setState({ student, visible: true }),
           })}

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Table } from 'antd';
+import styles from './Table.module.css';
 
 const TableComponent = props => (
   <Table
     {...props}
+    rowClassName={(props.expandRowByClick || props.onRow) && styles.row}
     pagination={{ hideOnSinglePage: true }}
     columns={props.columns.map(({ children, ...col }) => ({
       ...(children

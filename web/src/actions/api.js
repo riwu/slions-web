@@ -30,7 +30,7 @@ export const getSongs = language =>
 export const createClass = classInfo => post('classes', classInfo);
 export const updateClass = (id, classInfo) => patch(`classes/${id}`, classInfo);
 export const deleteClass = id => del(`classes/${id}`);
-export const updateVideoSize = () => patch('songs/videoSize');
+export const updateVideoSize = () => patch('songs/videoMetadata');
 export const joinClass = id => post(`classes/${id}/students`);
 export const leaveClass = id => del(`classes/${id}/student`);
 export const getClass = id => get(`classes/${id}`);
