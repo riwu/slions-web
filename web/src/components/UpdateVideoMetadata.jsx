@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button, message } from 'antd';
 import { updateVideoSize } from '../actions/api';
 
-const UpdateVideoSize = (props) => {
+const UpdateVideoMetadata = props => {
   if (!props.isAdmin) return null;
   return (
     <Button
@@ -16,15 +16,17 @@ const UpdateVideoSize = (props) => {
             message.destroy();
             message.success('Update successful');
           })
-          .catch((e) => {
+          .catch(e => {
             message.destroy();
             message.error(`Failed to update: ${e.message}`);
           });
       }}
     >
-      Update video size
+      Update video metadata
     </Button>
   );
 };
 
-export default connect(state => ({ isAdmin: state.user.isAdmin }))(UpdateVideoSize);
+export default connect(state => ({ isAdmin: state.user.isAdmin }))(
+  UpdateVideoMetadata
+);

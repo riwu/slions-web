@@ -1,6 +1,6 @@
 import React from 'react';
 import CreateClass from '../components/CreateClass';
-import UpdateVideoSize from '../components/UpdateVideoSize';
+import UpdateVideoMetadata from '../components/UpdateVideoMetadata';
 import ClassList from '../components/ClassList';
 import styles from './Classes.module.css';
 import { LogoPurple } from '../assets/images';
@@ -17,7 +17,7 @@ const Classes = props => (
       </span>
       <span>
         <CreateClass />
-        <UpdateVideoSize className={styles.updateVideoSize} />
+        <UpdateVideoMetadata className={styles.updateVideoMetadata} />
       </span>
     </div>
     <ClassList history={props.history} />
